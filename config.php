@@ -58,7 +58,7 @@ return [
     /**
      * what is the default documentation page
      */
-    'default_doc_page'  => getenv('DEFAULT_DOC_PAGE') ?: 'installation.md',
+    'default_doc_page'  => getenv('DEFAULT_DOC_PAGE') ?: 'overview.md',
 
     'nav_page'  => getenv('NAV_PAGE') ?: 'navigation.md',
 

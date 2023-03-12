@@ -38,7 +38,7 @@
             </div>
             <div class="lg:pl-[17.5rem] z-30">
                 <div class="max-w-3xl mx-auto pt-20 xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
-                    <div class="doc-content prose p-9 !z-30">
+                    <div class="doc-content prose p-9 !z-30 <?php if(\App\Core\App::get('display_line_numbers')) echo ' line-numbers' ?>">
                         <?php echo replace_version($content, $version); ?>
                     </div>
                     <div class="side-nav-container fixed z-20 top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 overflow-y-auto hidden xl:block">
