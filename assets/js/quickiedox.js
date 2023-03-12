@@ -24,13 +24,15 @@ setPageTitle = () =>  {
  * retrieves the text after the last '/' of the url and strips off
  * any hash (#) and text after the #
  */
-highlightThisPageInNav = () => {
+highlightThisPageInNav = (default_url) => {
     let this_page = (((location.href).split('/')).slice(-1)[0].split('#'))[0];
-    document.querySelectorAll('nav li a').forEach((el) => {
-        if (el.getAttribute('href').includes(this_page)) {
-            el.classList.add('selected');
-        }
-    });
+    if(this_page !== default_url) {
+        document.querySelectorAll('nav li a').forEach((el) => {
+            if (el.getAttribute('href').includes(this_page)) {
+                el.classList.add('selected');
+            }
+        });
+    }
 }
 
 /**
@@ -84,12 +86,14 @@ collapseAll = (cascade_collapse) => {
  */
 openUpNav = () => {
     let elem = document.querySelector('li a.selected');
-    for ( ; elem; elem = elem.parentNode ) {
-        let current_node = elem.nodeName.toLowerCase();
-        if (current_node === 'ul') {
-            elem.classList.replace('hidden', 'open');
+    if(elem) {
+        for (; elem; elem = elem.parentNode) {
+            let current_node = elem.nodeName.toLowerCase();
+            if (current_node === 'ul') {
+                elem.classList.replace('hidden', 'open');
+            }
+            if (current_node === 'nav') break;
         }
-        if (current_node === 'nav') break;
+        document.querySelector('li a.selected').parentNode.parentNode.classList.add('animate__animated', navAnimation);
     }
-    document.querySelector('li a.selected').parentNode.parentNode.classList.add('animate__animated', navAnimation);
 }

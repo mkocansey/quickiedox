@@ -54,7 +54,7 @@
 <script>
     setPageTitle();
     collapseAll(true);
-    highlightThisPageInNav();
+    highlightThisPageInNav('<?php echo strip_slash(get_url_prefix(),-1) ?>');
     activateNavActions();
     openUpNav();
 </script>
