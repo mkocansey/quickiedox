@@ -1,8 +1,18 @@
 <?php
     use App\Core\App;
     use App\Core\Doc;
-    require_once 'views/header.php';
 ?>
+<!doctype html>
+<html>
+    <head>
+        <title>QuickieDox: Quickly create elegant documentation from markdown files</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" href="/assets/images/quickiedox-icon.png" class="touch-icon" />
+        <link rel="shortcut icon" href="/assets/images/quickiedox-icon.png" type="image/x-icon" class="fav-icon" />
+        <link href="/assets/css/quickiedox.css" rel="stylesheet">
+    </head>
+<body>
     <div class="h-screen flex bg-slate-500">
 
         <div class="container mx-auto w-full lg:w-1/2 md:w-3/4 my-auto">
@@ -21,4 +31,5 @@
         </div>
     </div>
     <span class="hidden border border-red-400 text-center"></span>
-<?php require_once 'views/footer.php'; ?>
+</body>
+</html>
