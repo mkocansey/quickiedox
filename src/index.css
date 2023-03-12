@@ -1,0 +1,169 @@
+@tailwind base;
+
+@layer base {
+
+    .doc-font {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    html, body {
+        @apply doc-font
+    }
+}
+
+@tailwind components;
+
+@layer components {
+
+    .doc-content {
+        @apply text-slate-600
+    }
+
+    .doc-content h1 {
+        @apply text-4xl text-slate-700 antialiased mb-10 font-semibold tracking-wide
+    }
+
+    .doc-content h2 {
+        @apply mt-10 mb-4 text-3xl font-medium text-slate-700 antialiased
+    }
+
+    .doc-content h3 {
+         @apply text-xl font-normal antialiased text-black mt-10
+     }
+
+    .doc-content h4 {
+         @apply text-lg font-normal antialiased text-black mt-10
+     }
+
+    .doc-content p {
+        @apply my-5 leading-8 antialiased text-base
+    }
+
+    .doc-content a {
+        @apply text-indigo-500 hover:underline hover:text-indigo-700
+    }
+
+    .doc-content code.inline {
+        @apply border border-slate-200 bg-slate-100 px-1 text-sm text-cyan-600
+    }
+
+    .doc-content ul {
+        @apply  list-outside mb-10 ml-4 marker:text-indigo-300
+    }
+
+    .doc-content li {
+        @apply list-square leading-8 antialiased text-base
+    }
+
+    .doc-content pre[class*=language-] {
+        @apply !bg-slate-700 my-5 rounded-lg text-sm leading-7 whitespace-pre
+    }
+
+    .doc-content table {
+        @apply table-auto w-full border border-slate-200/50 my-10 border-collapse text-sm
+    }
+
+    .doc-content table>thead>tr>th {
+        @apply text-slate-700 tracking-wide bg-slate-200/50
+    }
+
+    .doc-content table>tbody>tr {
+        @apply even:bg-gray-100/30
+    }
+
+    .doc-content table>thead>tr>th, .doc-content table>tbody>tr>td {
+        @apply p-3 border-r border-b border-slate-200/50 leading-7
+    }
+
+    .doc-content table>tbody>tr:hover>td {
+        @apply bg-slate-100/50 border-b border-slate-200
+    }
+
+    .doc-content table>thead>tr>th:empty {
+        @apply bg-white !p-0 !h-0 border-t border-none
+    }
+
+    .doc-content .notfound {
+        @apply text-center
+    }
+
+    .doc-content .notfound img {
+        @apply h-72 mx-auto my-16
+    }
+
+    .doc-content .notfound h1 {
+        @apply text-6xl font-normal text-slate-600 my-6
+    }
+
+    .doc-content .notfound h2 {
+        @apply text-2xl font-extralight text-slate-500 leading-9
+    }
+
+    .doc-content .alert {
+        background-position: 15px 15px;
+        @apply py-4 pr-6 pl-[63px] bg-no-repeat bg-[length:40px_40px] border-2 border-dashed leading-relaxed rounded-lg text-sm mt-8
+    }
+
+    .doc-content .alert.note {
+        background-image: url(/assets/images/info.svg);
+        @apply border-sky-500 bg-sky-50
+    }
+
+    .doc-content .alert.tip {
+        background-image: url(/assets/images/tip.svg);
+        @apply border-amber-500 bg-amber-50
+    }
+
+    .doc-content .alert.okay {
+        background-image: url(/assets/images/check.svg);
+        @apply border-teal-500 bg-teal-50
+    }
+
+    .doc-content .alert.stop {
+        background-image: url(/assets/images/triangle.svg);
+        @apply border-rose-500 bg-rose-50
+    }
+
+    nav li h1 {
+        @apply text-sm font-semibold pt-2 text-slate-700 tracking-wider pb-3 cursor-pointer
+    }
+
+    :is(nav li):has(h1), :is(nav li):has(h2)  {
+        @apply text-base text-slate-400 text-indigo-400 list-square
+    }
+
+    nav li h2 {
+        @apply text-xs font-semibold py-2 text-slate-700/80 tracking-wider ml-3 cursor-pointer
+    }
+
+    nav > ul {
+        @apply m-2 list-inside
+    }
+
+    nav li ul {
+        @apply mb-4 list-inside ml-4
+    }
+
+    nav li ul li a {
+        @apply border-l border-slate-100 pl-3 block py-2 text-sm text-slate-600/80 hover:text-slate-900 hover:border-l hover:border-slate-400
+    }
+
+    nav a.selected {
+        @apply border-l border-indigo-800 text-indigo-800/80 hover:text-indigo-800/80 hover:border-l hover:border-indigo-800 bg-indigo-50/70
+    }
+
+    nav ul li ul li h2 + ul {
+        @apply ml-6
+    }
+
+    td.test {
+        @apply text-red-500
+    }
+
+    td.production {
+        @apply text-cyan-600
+    }
+
+}
+
+@tailwind utilities;

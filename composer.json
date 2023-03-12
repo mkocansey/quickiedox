@@ -1,0 +1,16 @@
+{
+  "require": {
+    "php": ">=7.4",
+    "symfony/http-client": "^5.3",
+    "league/commonmark": "^2.3"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "App\\" : "./"
+    },
+    "files" : ["Core/helpers.php", "config.php"]
+  },
+  "require-dev": {
+    "deployer/deployer": "^7.2"
+  }
+}
