@@ -21,14 +21,14 @@ return [
      * some API docs (like the Laravel docs) have a landing page that has other info 
      * with a button/link the user has to click on before diving into the docs
      *  */
-    'show_index_page'       => true,
+    'show_index_page'       => getenv('SHOW_INDEX_PAGE') ?: true,
     
     /**
      * if your doc pages require users to be logged in. If this is set to true, you will 
-     * need to update Core/Authentication.php to set what session variables you expect.
+     * need to update Core/Auth.php to write in your authentication logic.
      * authenticating users is not handled in this code base. 
      *  */
-    'require_signin'       => false,
+    'require_signin'       => getenv('REQUIRE_SIGNIN') ?: false,
     
     /**
      * if require_signin = true, all pages will check for the existence of the session 
@@ -41,7 +41,7 @@ return [
      * directory where docs will be loaded from. the default is a docs directory at the root 
      * of your codebase. whatever path you define must exist
      */
-    'docs_directory'    => 'markdown/',
+    'docs_directory'    => getenv('DOCS_DIRECTORY') ?: 'markdown',
 
     /**
      * what are the various documentation versions you want to load and make available to users. 
@@ -60,7 +60,7 @@ return [
      */
     'default_doc_page'  => getenv('DEFAULT_DOC_PAGE') ?: 'installation.md',
 
-    'default_nav_page'  => getenv('DEFAULT_NAV_PAGE') ?: 'navigation.md',
+    'nav_page'  => getenv('NAV_PAGE') ?: 'navigation.md',
 
     /**
      * what word should precede the url to your docs. The default is docs.
@@ -70,7 +70,7 @@ return [
      * will look like https://docs.myqpi.com/docs. this value is used in routes.php
      * to map urls to controllers
      */
-    'docs_url_prefix'   => getenv('DOCS_URL_PREFIX') ?: 'docs/',
+    'docs_url_prefix'   => getenv('DOCS_URL_PREFIX') ?: 'docs',
 
     'message_if_no_navigation' => 'no navigation.md file found',
 

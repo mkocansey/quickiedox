@@ -58,7 +58,7 @@ class Doc
 
     public function navigation(): string
     {
-        $nav_file = $this->pathToMdFiles() . App::get('default_nav_page');
+        $nav_file = $this->pathToMdFiles() . App::get('nav_page');
         return ($this->exists($nav_file)) ? $this->load($nav_file) : App::get('message_if_no_navigation');
     }
 

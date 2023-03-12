@@ -11,6 +11,11 @@
      */
     if(is_array($config_array) && ! empty($config_array)) {
         foreach ($config_array as $key => $value) {
+            // just ensure true/false values from .env file are treated as boolean
+            $value = (!is_array($value) && (str_contains($value, 'true') ||
+                        str_contains($value, 'false'))) ?
+                        filter_var($value, FILTER_VALIDATE_BOOLEAN) :
+                        $value;
             App::bind($key, $value);
         }
     }

@@ -1,7 +1,5 @@
 <?php
-    use App\Core\Utilities;
     use App\Core\App;
-    use GuzzleHttp\Client;
 
     function view (string $name, array $data = [], bool $raw = false)
     {
@@ -112,9 +110,14 @@
             $url;
     }
 
+    function append_slash(string $string): string
+    {
+        return (substr($string, -1) !== '/') ? $string . '/' : $string;
+    }
+
     function get_url_prefix(): string
     {
-        return strip_slash(App::get('docs_url_prefix'));
+        return append_slash(strip_slash(App::get('docs_url_prefix')));
     }
 
     function replace_version(string $string, string $version): string
