@@ -44,9 +44,9 @@
                         </button>
                         <div class="absolute -mt-8 rounded-lg bg-primary-100 text-primary-600 py-2 text-sm hidden group-hover:block">
                             <?php if(count(App::get('doc_versions')) > 1) {
-                                foreach(App::get('doc_versions') as $version) {
+                                foreach(App::get('doc_versions') as $branch) {
                             ?>
-                                <a href="/<?php echo get_url_prefix()."{$version}" ?>" class="block py-2 pl-3 pr-8 text-left border-b border-primary-200 hover:bg-primary-400 hover:text-primary-100"><?php echo $version; ?></a>
+                                <a href="/<?php echo get_url_prefix()."{$branch}" ?>" class="block py-2 pl-3 pr-8 text-left border-b border-primary-200 hover:bg-primary-400 hover:text-primary-100"><?php echo $version; ?></a>
                             <?php }
                             } ?>
                         </div>

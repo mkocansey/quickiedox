@@ -1,3 +1,7 @@
+<?php
+    use \App\Core\Doc;
+    use \App\Core\App;
+?>
 <!doctype html>
 <html>
     <head>
@@ -19,7 +23,7 @@
                     Quickly create elegant documentation from markdown files
                 </h1>
                 <div class="text-center pt-12 pb-4">
-                    <a href="<?php echo get_url_prefix().\App\Core\Doc::stripMdExtension(\App\Core\App::get('default_doc_page')) ?>"
+                    <a href="<?php echo get_url_prefix().append_slash(App::get('default_doc_version')).Doc::stripMdExtension(App::get('default_doc_page')) ?>"
                        class="py-4 px-10 inline-block text-xl bg-primary-500 tracking-wide hover:bg-primary-600 text-white rounded-xl shadow-sm shadow-slate-400">
                       Read Documentation
                     </a>

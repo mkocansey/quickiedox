@@ -19,6 +19,7 @@ class DocController
         $this->version = variable('dynamic_route_params')['version'] ?? App::get('default_doc_version');
         $this->error_page = 'views/404.md';
         $this->doc = new Doc($this->version, $this->page);
+//        die(var_dump(variable('dynamic_route_params')));
         Session::put([ 'current_version' => $this->version ]);
     }
 
@@ -143,7 +144,10 @@ class DocController
             die(api_response([
                 'status' => true,
                 'message' => sprintf('<br />DONE...<a href="%s">Read Documentation</a>',
-                            get_url_prefix().Doc::stripMdExtension(App::get('default_doc_page')))
+                        get_url_prefix().
+                                append_slash(App::get('default_doc_version')).
+                                Doc::stripMdExtension(App::get('default_doc_page'))
+                            )
             ]));
         }
     }

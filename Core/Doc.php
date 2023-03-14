@@ -43,7 +43,13 @@ class Doc
 
     private function pathToMdFiles(): string
     {
-        return  realpath('./' . App::get('docs_directory'). $this->version) . '/';
+        return  append_slash(
+            realpath(
+                './' . append_slash(App::get('docs_directory')).
+                (($this->version !== '') ?
+                    append_slash($this->version) : '')
+            )
+        );
     }
 
     public static function stripMdExtension(string $page): string
