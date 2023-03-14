@@ -112,7 +112,8 @@ class DocController
 
         if (is_dir($version_directory)) {
             chdir($version_directory);
-            exec("git reset --hard origin/$version && git pull && git clean -xdf");
+//            exec("git reset --hard origin/$version && git pull && git clean -xdf");
+            exec("git stash -all && git pull && git clean -xdf");
             $message =  sprintf("<br>Updated version <b>%s</b>", $version);
         } else {
             if (! mkdir($version_directory) ) {
