@@ -53,7 +53,9 @@ return [
      * if no doc versions are entered in the array, it is assumed you are loading all docs files from your 
      * root docs_directory (with no sub folders). example: docs/installation.md
      */
-    'doc_versions'      => [],
+    'doc_versions'      => [
+        'main'
+    ],
 
     /**
      * what is the default documentation page

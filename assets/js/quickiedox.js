@@ -97,3 +97,24 @@ openUpNav = () => {
         document.querySelector('li a.selected').parentNode.parentNode.classList.add('animate__animated', navAnimation);
     }
 }
+
+ajaxCall = (url, callback, method = 'GET', data) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open(method, url, true);
+    xhr.onreadystatechange =  function() {
+        if (this.readyState == 4) window [callback](JSON.parse(this.response), this.status);
+    }
+    xhr.send();
+  }
+
+  cloneCallback = (data, status) => {
+    if ( status == 200  || status == 422 ) {
+        let status = data.status;
+        let message = data.message;
+        let result = data.data;
+        document.querySelector('.clone-info').innerHTML += message;
+        if( (result !== undefined) && parseInt(result.branch) !== 0 && status) {
+            ajaxCall(`/clone?branch=${result.branch}`, 'cloneCallback');
+        }
+    }
+  }

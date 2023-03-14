@@ -9,19 +9,19 @@
         <link href="/assets/css/quickiedox.css" rel="stylesheet">
     </head>
     <body>
-        <div class="h-screen flex bg-slate-500">
+        <div class="h-screen flex bg-slate-100">
 
             <div class="container mx-auto w-full lg:w-1/2 md:w-3/4 my-auto">
-                <img src="/assets/images/quickiedox-white-logo.svg" alt="QuickieDox Logo" class="h-16 mx-auto" />
-                <img src="/assets/images/create-docs.svg" alt="Create Docs" class="mx-auto w-3/4 mt-12" />
+                <img src="/assets/images/quickiedox-logo.svg" alt="QuickieDox Logo" class="h-16 mx-auto" />
+                <img src="/assets/images/create-docs.svg" alt="Create Docs" class="mx-auto w-3/5 my-16" />
 
-                <h1 class="text-5xl md:text-6xl font-semibold mt-16 text-center text-white/50 drop-shadow-md">
+                <h1 class="text-5xl md:text-6xl font-semibold text-center text-slate-700">
                     Quickly create elegant documentation from markdown files
                 </h1>
                 <div class="text-center pt-12 pb-4">
                     <a href="<?php echo get_url_prefix().\App\Core\Doc::stripMdExtension(\App\Core\App::get('default_doc_page')) ?>"
-                       class="hover:bg-black text-white py-4 px-10 rounded-full inline-block text-xl tracking-wider cursor-pointer bg-slate-800">
-                      Read Docs
+                       class="py-4 px-10 inline-block text-xl bg-primary-500 tracking-wide hover:bg-primary-600 text-white rounded-xl shadow-sm shadow-slate-400">
+                      Read Documentation
                     </a>
                 </div>
             </div>

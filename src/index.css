@@ -20,7 +20,7 @@
     }
 
     .doc-content h1 {
-        @apply text-4xl text-slate-700 antialiased mb-10 font-semibold tracking-wide
+        @apply text-4xl text-slate-700 antialiased mb-10 font-medium
     }
 
     .doc-content h2 {
@@ -40,7 +40,7 @@
     }
 
     .doc-content a {
-        @apply text-indigo-500 hover:underline hover:text-indigo-700
+        @apply text-primary-500 hover:underline hover:text-primary-700
     }
 
     .doc-content code.inline {
@@ -48,7 +48,7 @@
     }
 
     .doc-content ul {
-        @apply  list-outside mb-10 ml-4 marker:text-indigo-300
+        @apply  list-outside mb-10 ml-4 marker:text-primary-300
     }
 
     .doc-content li {
@@ -129,7 +129,7 @@
     }
 
     :is(nav li):has(h1), :is(nav li):has(h2)  {
-        @apply text-base text-slate-400 text-indigo-400 list-square
+        @apply text-base text-slate-400 text-primary-400 list-square
     }
 
     nav li h2 {
@@ -149,7 +149,7 @@
     }
 
     nav a.selected {
-        @apply border-l border-indigo-800 text-indigo-800/80 hover:text-indigo-800/80 hover:border-l hover:border-indigo-800 bg-indigo-50/70
+        @apply border-l border-primary-800 text-primary-800/80 hover:text-primary-800/80 hover:border-l hover:border-primary-800 bg-primary-50/70
     }
 
     nav ul li ul li h2 + ul {

@@ -47,7 +47,7 @@
         return ($string !== '' && $keyword !== '' && strstr($string, $keyword) != '');
     }
 
-    function variable(string $key = '', string $specific_array = ''): object|bool|array
+    function variable(string $key = '', string $specific_array = ''): mixed //object|bool|array|string|int
     {
         switch ($specific_array){
             case 'post':
@@ -123,4 +123,41 @@
     function replace_version(string $string, string $version): string
     {
         return preg_replace('/\/+/', '/', (str_replace('%7Bversion%7D', '/' . get_url_prefix() . $version, $string)));
+    }
+
+    function exec_in_background(string $cmd, $result=null, $return=null) 
+    {
+        //taken from: https://www.php.net/manual/en/function.exec.php#86329
+        if (substr(php_uname(), 0, 7) == "Windows"){
+            pclose(popen("start /B ". $cmd, "r"));  
+        } else {
+            exec($cmd . " > /dev/null &", $result, $return);   
+            if(count($result) > 0) {
+                echo '<pre class="text-slate-400">';
+                foreach($result as $line) echo "$line \n";
+                echo '</pre>';
+            }
+        }
+    }
+
+    function api_response (...$params)
+    {
+        $params = (object) $params[0];
+        $return = [ "status" => $params->status ];
+        if ( isset($params->data) ) $return["data"] = $params->data;
+        if ( isset($params->message) ) $return["message"] = $params->message;
+        if(! $params->status ) {
+            http_response_code(isset($params->http_response_code) ? $params->http_response_code : 422); //422
+        }
+        return jsonize($return);
+    }
+
+    function get_input()
+    {
+        return json_decode(file_get_contents('php://input'));
+    }
+
+    function jsonize ($data) {
+        header('Content-Type: application/json; charset=utf-8');
+        return json_encode($data);
     }
