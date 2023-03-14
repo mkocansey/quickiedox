@@ -78,4 +78,8 @@ return [
 
     'display_line_numbers' => getenv('DISPLAY_LINE_NUMBERS') ?: false,
 
+    'git_clone_pin' => getenv('GIT_CLONE_PIN'),
+
+    'md_repo_url' => getenv('MD_REPO_URL'),
+
 ];
