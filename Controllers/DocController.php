@@ -9,7 +9,7 @@ use App\Core\Session;
 class DocController
 {
     private Doc $doc;
-    private mixed $page;
+    private string $page;
     private string $version;
     private string $error_page;
 
@@ -19,22 +19,21 @@ class DocController
         $this->version = variable('dynamic_route_params')['version'] ?? App::get('default_doc_version');
         $this->error_page = 'views/404.md';
         $this->doc = new Doc($this->version, $this->page);
-//        die(var_dump(variable('dynamic_route_params')));
         Session::put([ 'current_version' => $this->version ]);
     }
 
-    public function index(): string|bool|null
+    public function index(): string
     {
         if(App::get('show_index_page')) return view('home');
         return $this->doc->load();
     }
 
-    public function notFound(): string|null
+    public function notFound(): string
     {
-        return view('404'); //$this->doc->notFound();
+        return view('404');
     }
 
-    public function read(): string|null
+    public function read(): string
     {
         $html = ($this->doc->exists()) ?
                 $this->doc->load() :
@@ -54,7 +53,7 @@ class DocController
         return '<div class="notfound">' . $content . '</div>';
     }
 
-    public function clone_init( bool $has_error = false, string $action = 'pin'): mixed
+    public function clone_init( bool $has_error = false, string $action = 'pin'): string
     {
         if(variable('pin', 'post')) {
             $pin = variable('pin', 'post');
@@ -104,17 +103,10 @@ class DocController
         $version = $doc_versions[$this_version] ?? null;
         $version_directory = append_slash($repo_directory).$version;
 
-        /* if( !($version) ) {
-            die(api_response([
-                'status' => true,
-                'message' => '<br />no more branches to clone '
-            ]));
-        } */
-
         if (is_dir($version_directory)) {
             chdir($version_directory);
-//            exec("git reset --hard origin/$version && git pull && git clean -xdf");
-            exec("git stash -all && git pull && git clean -xdf");
+            exec("git reset --hard origin/$version && git pull && git clean -xdf");
+//            exec("git stash -all && git pull && git clean -xdf");
             $message =  sprintf("<br>Updated version <b>%s</b>", $version);
         } else {
             if (! mkdir($version_directory) ) {

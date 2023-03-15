@@ -3,14 +3,16 @@
 namespace App\Core;
 
 
+use Exception;
+
 class Router
 {
-    public static $routes = [
+    public static array $routes = [
         'GET' => [],
         'POST' => []
     ];
 
-    public static function load($file): static
+    public static function load($file): Router
     {
         // $router = new static;
         require $file;
@@ -27,6 +29,9 @@ class Router
         self::$routes['POST'][strip_slash($url)] = $controller;
     }
 
+    /**
+     * @throws Exception
+     */
     public function direct($url, $requestType)
     {
         $this->hotSwap($url, $requestType);
@@ -37,18 +42,21 @@ class Router
             );
         }
 
-        $this->direct('404','GET');
+        return $this->direct('404','GET');
     }
 
+    /**
+     * @throws Exception
+     */
     public function callAction($controller, $action)
     {
         $controller_ = $controller;
-        $controller = "App\\Controllers\\{$controller}";
+        $controller = "App\\Controllers\\$controller";
         $controller = new $controller;
 
         if ( !method_exists($controller, $action) )
         {
-            throw new \Exception("{$controller_} does not respond to @{$action}");
+            throw new Exception("$controller_ does not respond to @$action");
         }
         return $controller->$action();
     }

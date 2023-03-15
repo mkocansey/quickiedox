@@ -2,7 +2,9 @@
   "require": {
     "php": ">=7.4",
     "symfony/http-client": "^5.3",
-    "league/commonmark": "^2.3"
+    "league/commonmark": "^2.3",
+    "ext-curl": "*",
+    "ext-json": "*"
   },
   "autoload" : {
     "psr-4" : {

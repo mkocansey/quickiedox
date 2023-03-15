@@ -3,21 +3,21 @@
 
     function view (string $name, array $data = [], bool $raw = false)
     {
-        if( file_exists("views/{$name}.php") )
+        if( file_exists("views/$name.php") )
         {
             extract($data);
             if (! $raw ) {
-                require "views/{$name}.php";
+                return require "views/$name.php";
             } else {
                 ob_start();
-                require "views/{$name}.php";
+                require "views/$name.php";
                 $res = ob_get_contents();
                 ob_get_clean();
                 ob_flush();
                 return $res;
             }
         } else {
-            require "views/404.php";
+            return require "views/404.php";
         }
     }
 
@@ -26,28 +26,7 @@
         echo '<script type="text/javascript">location.href=\''.$url.'\';</script>';
     }
 
-    function callAPI($url, $data=[], $method='POST', $decode=true) {
-
-        $client = new Client();
-        if ($method === 'POST') {
-            $res = $client->post(
-                App::get('api_url') . $url,
-                [
-                    'body' => json_encode($data)
-                ]
-            );
-        } else {
-            $res = $client->get(App::get('api_url') . $url);
-        }
-        return (($decode) ? json_decode($res->getBody()) : $res->getBody());
-    }
-
-    function string_contains(string $string, string $keyword): bool
-    {
-        return ($string !== '' && $keyword !== '' && strstr($string, $keyword) != '');
-    }
-
-    function variable(string $key = '', string $specific_array = ''): mixed //object|bool|array|string|int
+    function variable(string $key = '', string $specific_array = '')
     {
         switch ($specific_array){
             case 'post':
@@ -95,10 +74,10 @@
         }
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        if(FALSE === ($retval = curl_exec($ch))){
+        if(FALSE === ($return = curl_exec($ch))){
             echo curl_error($ch);
         } else {
-            return $retval;
+            return $return;
         }
     }
 
@@ -132,9 +111,9 @@
         if ( isset($params->data) ) $return["data"] = $params->data;
         if ( isset($params->message) ) $return["message"] = $params->message;
         if(! $params->status ) {
-            http_response_code(isset($params->http_response_code) ? $params->http_response_code : 422); //422
+            http_response_code($params->http_response_code ?? 422); //422
         }
-        return jsonize($return);
+        return toJson($return);
     }
 
     function get_input()
@@ -142,7 +121,7 @@
         return json_decode(file_get_contents('php://input'));
     }
 
-    function jsonize ($data) {
+    function toJson ($data) {
         header('Content-Type: application/json; charset=utf-8');
         return json_encode($data);
     }

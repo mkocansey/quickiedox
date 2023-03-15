@@ -2,12 +2,14 @@
 
 namespace App\Core;
 
+use RuntimeException;
+
 class Envy
 {
     public static function load(String $path) :void
     {
         if (!is_readable($path)) {
-            throw new \RuntimeException(sprintf('%s file is not readable', $path));
+            throw new RuntimeException(sprintf('%s file is not readable', $path));
         }
 
         $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

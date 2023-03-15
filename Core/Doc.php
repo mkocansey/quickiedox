@@ -23,7 +23,7 @@ class Doc
         return file_exists(($page) ?? $this->page);
     }
 
-    public function notFound(): string|null
+    public function notFound(): string
     {
         return view('404');
     }
