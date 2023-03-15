@@ -2,4 +2,5 @@ vendor
 markdown/*
 .DS_Store
 .idea
+.env
 deploy.php
