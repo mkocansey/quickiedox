@@ -10,6 +10,7 @@
     /**
      * load the content of the .env file
      */
+    if(! file_exists(__DIR__ . '/.env')) die('Please rename .env-example to .env');
     Envy::load(__DIR__ . '/.env');
 
     /**

@@ -1,13 +1,7 @@
-<!doctype html>
-<html>
-    <head>
-        <title>QuickieDox: 404 - Page Not Found</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="apple-touch-icon" href="/assets/images/quickiedox-icon.png" class="touch-icon" />
-        <link rel="shortcut icon" href="/assets/images/quickiedox-icon.png" type="image/x-icon" class="fav-icon" />
-        <link href="/assets/css/quickiedox.css" rel="stylesheet">
-    </head>
+<?php
+    $page_title = 'QuickieDox: 404 - Page Not Found';
+    require_once 'header.php';
+?>
     <body>
         <div class="h-screen flex">
             <div class="container mx-auto w-full lg:w-1/2 md:w-3/4 my-auto">

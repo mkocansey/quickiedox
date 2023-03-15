@@ -1,25 +1,17 @@
 <?php
     use \App\Core\Doc;
     use \App\Core\App;
+    $page_title = 'QuickieDox: Quickly create elegant documentation from markdown files';
+    require_once 'header.php';
 ?>
-<!doctype html>
-<html>
-    <head>
-        <title>QuickieDox: Quickly create elegant documentation from markdown files</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="apple-touch-icon" href="/assets/images/quickiedox-icon.png" class="touch-icon" />
-        <link rel="shortcut icon" href="/assets/images/quickiedox-icon.png" type="image/x-icon" class="fav-icon" />
-        <link href="/assets/css/quickiedox.css" rel="stylesheet">
-    </head>
     <body>
         <div class="h-screen flex bg-slate-100">
 
             <div class="container mx-auto w-full lg:w-1/2 md:w-3/4 my-auto">
-                <img src="/assets/images/quickiedox-logo.svg" alt="QuickieDox Logo" class="h-16 mx-auto" />
-                <img src="/assets/images/create-docs.svg" alt="Create Docs" class="mx-auto w-3/5 my-16" />
+                <img src="/assets/images/logo.svg" alt="QuickieDox Logo" class="h-16 mx-auto" />
+                <img src="/assets/images/create-docs.svg" alt="Create Docs" class="mx-auto w-3/5 my-16 animate__animated animate__fadeIn" />
 
-                <h1 class="text-5xl md:text-6xl font-semibold text-center text-slate-700">
+                <h1 class="text-5xl md:text-6xl font-semibold text-center text-slate-700 animate__animated animate__fadeIn">
                     Quickly create elegant documentation from markdown files
                 </h1>
                 <div class="text-center pt-12 pb-4">

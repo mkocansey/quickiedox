@@ -20,7 +20,7 @@
     }
 
     .doc-content h1 {
-        @apply text-4xl text-slate-700 antialiased mb-10 font-medium
+        @apply text-5xl text-slate-700 antialiased mb-10 font-normal tracking-wide
     }
 
     .doc-content h2 {
@@ -100,32 +100,32 @@
     }
 
     .doc-content .alert {
-        background-position: 15px 15px;
-        @apply py-4 pr-6 pl-[63px] bg-no-repeat bg-[length:40px_40px] border-2 border-dashed leading-relaxed rounded-lg text-sm mt-8
+        background-position: 15px 20px;
+        @apply py-4 pr-6 pl-[63px] bg-no-repeat bg-[length:40px_40px] leading-relaxed rounded-lg mt-8
     }
 
     .doc-content .alert.note {
         background-image: url(/assets/images/info.svg);
-        @apply border-sky-500 bg-sky-50
+        @apply bg-sky-50
     }
 
     .doc-content .alert.tip {
         background-image: url(/assets/images/tip.svg);
-        @apply border-amber-500 bg-amber-50
+        @apply bg-amber-50
     }
 
     .doc-content .alert.okay {
         background-image: url(/assets/images/check.svg);
-        @apply border-teal-500 bg-teal-50
+        @apply bg-teal-50
     }
 
     .doc-content .alert.stop {
         background-image: url(/assets/images/triangle.svg);
-        @apply border-rose-500 bg-rose-50
+        @apply bg-rose-50
     }
 
     nav li h1 {
-        @apply text-sm font-semibold pt-2 text-slate-700 tracking-wider pb-3 cursor-pointer
+        @apply text-sm font-semibold pt-2 text-slate-700 tracking-wider pb-3 cursor-pointer inline-block
     }
 
     :is(nav li):has(h1), :is(nav li):has(h2)  {
