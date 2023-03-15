@@ -20,11 +20,11 @@
     }
 
     .doc-content h1 {
-        @apply text-5xl text-slate-700 antialiased mb-10 font-normal tracking-wide
+        @apply text-4xl antialiased mb-10 font-medium text-primary-400
     }
 
     .doc-content h2 {
-        @apply mt-10 mb-4 text-3xl font-medium text-slate-700 antialiased
+        @apply mt-10 mb-4 text-3xl font-normal text-slate-700 antialiased
     }
 
     .doc-content h3 {
@@ -40,19 +40,19 @@
     }
 
     .doc-content a {
-        @apply text-primary-500 hover:underline hover:text-primary-700
+        @apply text-primary-700 hover:underline hover:text-primary-700
     }
 
     .doc-content code.inline {
         @apply border border-slate-200 bg-slate-100 px-1 text-sm text-cyan-600
     }
 
-    .doc-content ul {
+    .doc-content ul, .doc-content ol {
         @apply  list-outside mb-10 ml-4 marker:text-primary-300
     }
 
     .doc-content li {
-        @apply list-square leading-8 antialiased text-base
+        @apply list-square leading-8 antialiased text-base pb-3
     }
 
     .doc-content pre[class*=language-] {

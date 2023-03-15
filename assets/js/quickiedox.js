@@ -5,7 +5,7 @@
  *
  */
 
-const navAnimation = 'animate__fadeIn';
+const navAnimation = 'fadeIn';
 
 /**
  * set the title of the current page.
@@ -47,12 +47,10 @@ activateNavActions = () => {
             if(next_kid.classList.contains('open')) {
                 next_kid.classList.add('hidden');
                 next_kid.classList.remove('open');
-                next_kid.classList.remove('animate__animated');
                 next_kid.classList.remove(navAnimation);
             } else {
                 next_kid.classList.toggle('hidden');
                 next_kid.classList.toggle('open');
-                next_kid.classList.toggle('animate__animated');
                 next_kid.classList.toggle(navAnimation);
             }
         });
@@ -94,7 +92,7 @@ openUpNav = () => {
             }
             if (current_node === 'nav') break;
         }
-        document.querySelector('li a.selected').parentNode.parentNode.classList.add('animate__animated', navAnimation);
+        document.querySelector('li a.selected').parentNode.parentNode.classList.add(navAnimation);
     }
 }
 
@@ -117,4 +115,12 @@ ajaxCall = (url, callback, method = 'GET', data) => {
             ajaxCall(`/clone?branch=${result.branch}`, 'cloneCallback');
         }
     }
+  }
+
+  externalLinksOpenInNewWindow = () => {
+    document.querySelectorAll('.doc-content a').forEach((el) => {
+        if( el.getAttribute('href').indexOf('http') !== -1) {
+            el.setAttribute('target', '_blank');
+        }
+    });
   }

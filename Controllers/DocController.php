@@ -90,7 +90,10 @@ class DocController
 
         $doc_versions =  App::get('doc_versions');
         $repo_url = App::get('md_repo_url');
-        ini_set('max_execution_time', '300');
+
+        // if your cloning takes longer than usual because you have several files in your repo,
+        // you can uncomment the line below to increase PHP's execution time
+//        ini_set('max_execution_time', '300');
 
         if (count($doc_versions) < 1) {
             die(api_response([
@@ -106,7 +109,6 @@ class DocController
         if (is_dir($version_directory)) {
             chdir($version_directory);
             exec("git reset --hard origin/$version && git pull && git clean -xdf");
-//            exec("git stash -all && git pull && git clean -xdf");
             $message =  sprintf("<br>Updated version <b>%s</b>", $version);
         } else {
             if (! mkdir($version_directory) ) {
