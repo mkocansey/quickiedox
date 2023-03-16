@@ -80,11 +80,18 @@ class DocController
             ]));
         }
         $repo_directory = dirname(__DIR__) . '/' . App::get('docs_directory');
-        if(!is_dir($repo_directory)) mkdir($repo_directory);
+        if(!is_dir($repo_directory)) {
+            if ( ! mkdir($repo_directory) ) {
+                die(api_response([
+                    'status' => false,
+                    'message' => "<br />Unable to create $repo_directory. Kindly create the directory yourself and try cloning again."
+                ]));
+            }
+        }
         if(!is_writable($repo_directory)) {
             die(api_response([
                 'status' => false,
-                'message' => "Unable to write into $repo_directory"
+                'message' => "<br />Unable to write into $repo_directory"
             ]));
         }
 
