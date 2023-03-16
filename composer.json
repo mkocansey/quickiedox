@@ -1,7 +1,22 @@
 {
+  "name": "mkocansey/quickiedox",
+  "type": "project",
+  "description": "Quickly create elegant documentation from markdown files.",
+  "keywords": ["template","markdown","documentation"],
+  "homepage": "https://quickiedox.com",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Michael K. Ocansey",
+      "email": "kabutey@gmail.com"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/mkocansey/quickiedox-mds/issues",
+    "source": "https://github.com/mkocansey/quickiedox-mds"
+  },
   "require": {
     "php": ">=7.4",
-    "symfony/http-client": "^5.3",
     "league/commonmark": "^2.3",
     "ext-curl": "*",
     "ext-json": "*"
@@ -11,8 +26,5 @@
       "App\\" : "./"
     },
     "files" : ["Core/helpers.php", "config.php"]
-  },
-  "require-dev": {
-    "deployer/deployer": "^7.2"
   }
 }

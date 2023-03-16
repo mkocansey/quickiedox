@@ -13,8 +13,8 @@ const navAnimation = 'fadeIn';
  * the default heading in config.php (default_page_title)
  * */
 setPageTitle = () =>  {
-    let page_title = (document.querySelector('.doc-content h1:first-child')) ?
-        document.querySelector('.doc-content h1:first-child').textContent :
+    let page_title = (domElement('.doc-content h1:first-child')) ?
+        domElement('.doc-content h1:first-child').textContent :
         '404 | Page not found';
     document.title += ': ' + page_title;
 }
@@ -83,7 +83,7 @@ collapseAll = (cascade_collapse) => {
  * the selected nav item, irrespective of how nested the selected item is.
  */
 openUpNav = () => {
-    let elem = document.querySelector('li a.selected');
+    let elem = domElement('li a.selected');
     if(elem) {
         for (; elem; elem = elem.parentNode) {
             let current_node = elem.nodeName.toLowerCase();
@@ -92,7 +92,7 @@ openUpNav = () => {
             }
             if (current_node === 'nav') break;
         }
-        document.querySelector('li a.selected').parentNode.parentNode.classList.add(navAnimation);
+        domElement('li a.selected').parentNode.parentNode.classList.add(navAnimation);
     }
 }
 
@@ -110,7 +110,7 @@ ajaxCall = (url, callback, method = 'GET', data) => {
         let status = data.status;
         let message = data.message;
         let result = data.data;
-        document.querySelector('.clone-info').innerHTML += message;
+        domElement('.clone-info').innerHTML += message;
         if( (result !== undefined) && parseInt(result.branch) !== 0 && status) {
             ajaxCall(`/clone?branch=${result.branch}`, 'cloneCallback');
         }
@@ -119,8 +119,38 @@ ajaxCall = (url, callback, method = 'GET', data) => {
 
   externalLinksOpenInNewWindow = () => {
     document.querySelectorAll('.doc-content a').forEach((el) => {
-        if( el.getAttribute('href').indexOf('http') !== -1) {
+        if( el.getAttribute('href').includes('http')) {
             el.setAttribute('target', '_blank');
         }
     });
+  }
+
+  search = (keyword) => {
+    let search_bar = domElement('.search-bar');
+    if(keyword !== '') {
+        search_bar.classList.remove('hidden');
+        // make an ajax call with keyword
+    } else {
+        search_bar.classList.add('hidden');
+    }
+  }
+
+  listenForSearchShortcut = (event) => {
+    document.addEventListener('keydown', (event) => {
+        let keyCode = event.key.toLowerCase();
+        if( (event.metaKey && keyCode === 'k') || event.ctrlKey && keyCode === 'k')
+            domElement('.search').focus();
+    });
+      document.addEventListener('keyup', (event) => {
+          let keyCode = event.key.toLowerCase();
+          if(keyCode === '/') domElement('.search').focus();
+      });
+  }
+
+  domElement = (element) => {
+    return document.querySelector(element);
+  }
+
+  writeCtrlOrCmd = () => {
+    domElement('.search-shortcut').innerText = (! navigator.userAgent.toLowerCase().includes('mac os')) ? 'Ctrl+K' : '⌘K';
   }

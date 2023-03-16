@@ -1,5 +1,6 @@
 <?php
     use App\Core\App;
+    use App\Core\Doc;
 
     function view (string $name, array $data = [], bool $raw = false)
     {
@@ -19,11 +20,6 @@
         } else {
             return require "views/404.php";
         }
-    }
-
-    function redirect(string $url): void
-    {
-        echo '<script type="text/javascript">location.href=\''.$url.'\';</script>';
     }
 
     function variable(string $key = '', string $specific_array = '')
@@ -99,10 +95,10 @@
         return append_slash(strip_slash(App::get('docs_url_prefix')));
     }
 
-    function replace_version(string $string, string $version): string
+/*    function replace_version(string $string, string $version): string
     {
         return preg_replace('/\/+/', '/', (str_replace('%7Bversion%7D', '/' . get_url_prefix() . $version, $string)));
-    }
+    }*/
 
     function api_response (...$params)
     {
@@ -113,7 +109,7 @@
         if(! $params->status ) {
             http_response_code($params->http_response_code ?? 422); //422
         }
-        return toJson($return);
+        return to_json($return);
     }
 
     function get_input()
@@ -121,7 +117,15 @@
         return json_decode(file_get_contents('php://input'));
     }
 
-    function toJson ($data) {
+    function to_json ($data)
+    {
         header('Content-Type: application/json; charset=utf-8');
         return json_encode($data);
+    }
+
+    function docs_home(): string
+    {
+        return '/' . get_url_prefix().
+            append_slash(App::get('default_doc_version')).
+            Doc::stripMdExtension(App::get('default_doc_page'));
     }

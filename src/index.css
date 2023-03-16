@@ -16,19 +16,19 @@
 @layer components {
 
     .doc-content {
-        @apply text-slate-600
+        @apply text-slate-600 antialiased
     }
 
     .doc-content h1 {
-        @apply text-4xl antialiased mb-10 font-medium text-primary-400
+        @apply text-3xl antialiased mb-10 font-extrabold text-slate-800/90
     }
 
     .doc-content h2 {
-        @apply mt-10 mb-4 text-3xl font-normal text-slate-700 antialiased
+        @apply mt-10 mb-4 text-2xl font-extrabold text-slate-600 antialiased
     }
 
     .doc-content h3 {
-         @apply text-xl font-normal antialiased text-black mt-10
+         @apply text-xl font-medium antialiased text-black mt-10
      }
 
     .doc-content h4 {
@@ -40,7 +40,7 @@
     }
 
     .doc-content a {
-        @apply text-primary-700 hover:underline hover:text-primary-700
+        @apply text-primary-500 hover:underline hover:text-primary-700
     }
 
     .doc-content code.inline {
