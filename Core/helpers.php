@@ -129,3 +129,8 @@
             append_slash(App::get('default_doc_version')).
             Doc::stripMdExtension(App::get('default_doc_page'));
     }
+
+    function make_sluggable(string $string): string
+    {
+        return preg_replace('/[\s\$]/', '-', strtolower($string));
+    }

@@ -137,13 +137,13 @@ ajaxCall = (url, callback, method = 'GET', data) => {
 
   listenForSearchShortcut = (event) => {
     document.addEventListener('keydown', (event) => {
-        let keyCode = event.key.toLowerCase();
-        if( (event.metaKey && keyCode === 'k') || event.ctrlKey && keyCode === 'k')
+        let key_code = event.key.toLowerCase();
+        if( (event.metaKey && key_code === 'k') || event.ctrlKey && key_code === 'k')
             domElement('.search').focus();
     });
       document.addEventListener('keyup', (event) => {
-          let keyCode = event.key.toLowerCase();
-          if(keyCode === '/') domElement('.search').focus();
+          let key_code = event.key.toLowerCase();
+          if(key_code === '/') domElement('.search').focus();
       });
   }
 
@@ -151,6 +151,40 @@ ajaxCall = (url, callback, method = 'GET', data) => {
     return document.querySelector(element);
   }
 
+  domElements = (elements) => {
+    return document.querySelectorAll(elements);
+  }
+
   writeCtrlOrCmd = () => {
     domElement('.search-shortcut').innerText = (! navigator.userAgent.toLowerCase().includes('mac os')) ? 'Ctrl+K' : '⌘K';
+  }
+
+  drawSidenav = () => {
+    let headings = domElements('.doc-content h2, .doc-content h3, .doc-content h4, .doc-content h5, .doc-content h6');
+    let nav = '<ul>';
+    headings.forEach((el, index) => {
+        el.setAttribute('id', sluggable(el.innerText));
+        el.setAttribute('style', 'scroll-margin-top: 6rem');
+        const this_level = parseInt(el.tagName.charAt(1), 10);
+        const previous_level = (index > 0) ? parseInt(headings[index-1].tagName.charAt(1), 10) : this_level;
+        if(this_level > previous_level) nav+= `<ul>`;
+        nav+= `<li><a href="#${sluggable(el.innerText)}">${el.innerText}</a>`;
+        if(this_level > previous_level) {
+            nav+= `</li></ul>`;
+        }
+    });
+    nav += '</ul>';
+    domElement('.side-nav').innerHTML = nav;
+  }
+
+  setHeadingIds = () => {
+    let headings = domElements('.doc-content h2, .doc-content h3, .doc-content h4, .doc-content h5, .doc-content h6');
+    headings.forEach((el) => {
+       el.setAttribute('id', sluggable(el.innerText));
+    });
+  }
+
+  sluggable = (text) => {
+    let find = /[\s.!@#\$%\^&*\(\)+{}\/\\<>:;\[\]=`~,|]/g;
+    return text.replace(find, '-').toLowerCase();
   }

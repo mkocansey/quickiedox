@@ -1,6 +1,5 @@
 <?php
     use \App\Core\App;
-    use \App\Core\Doc;
     require_once 'header.php';
 ?>
     <body>
@@ -58,18 +57,17 @@
         <div class="max-w-8xl mx-auto px-4 flex">
             <div class="lg:!block z-40 inset-0 top-[82px] w-[17.5rem] pb-10 pt-6 overflow-y-auto border-r border-slate-100 fixed left-[max(0px,calc(50%-45rem))] right-auto px-4">
                 <nav class="quickie-navigation">
-                    <?php echo $navigation; ?>
+                    <?php echo $navigation ?? ''; ?>
                 </nav>
             </div>
             <div class="lg:pl-[17.5rem] z-30">
                 <div class="max-w-3xl mx-auto pt-20 xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
-                    <div class="doc-content prose p-9 !z-30 <?php if(\App\Core\App::get('display_line_numbers')) echo ' line-numbers' ?>">
-                        <?php echo $content; ?>
+                    <div class="doc-content scroll-smooth prose p-9 !z-30 <?php if(\App\Core\App::get('display_line_numbers')) echo ' line-numbers' ?>">
+                        <?php echo $content ?? ''; ?>
                     </div>
                     <div class="side-nav-container fixed z-20 top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 overflow-y-auto hidden xl:block">
-                        <div class="side-nav">
-                            this is the side nav
-                        </div>
+                        <p class="py-4 pt-6 text-slate-400 text-xs uppercase tracking-wider">In This Document</p>
+                        <div class="side-nav"></div>
                     </div>
                 </div>
             </div>
@@ -77,7 +75,6 @@
     </body>
 </html>
 <script src="/assets/js/prism.js"></script>
-<script src="/assets/js/quickiedox.js"></script>
 <script>
     setPageTitle();
     collapseAll(true);
@@ -87,4 +84,5 @@
     externalLinksOpenInNewWindow();
     writeCtrlOrCmd();
     listenForSearchShortcut();
+    drawSidenav();
 </script>

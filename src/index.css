@@ -39,7 +39,7 @@
         @apply my-5 leading-8 antialiased text-base
     }
 
-    .doc-content a {
+    .doc-content a, .side-nav a {
         @apply text-primary-500 hover:underline hover:text-primary-700
     }
 
@@ -124,17 +124,17 @@
         @apply bg-rose-50
     }
 
-    nav li h1 {
+    nav li h1, nav li h2, nav li h3 {
         @apply text-sm font-semibold pt-2 text-slate-700 tracking-wider pb-3 cursor-pointer inline-block
     }
 
     :is(nav li):has(h1), :is(nav li):has(h2)  {
-        @apply text-base text-slate-400 text-primary-400 list-square
+        @apply text-base text-primary-400 list-square
     }
-
+/* 
     nav li h2 {
-        @apply text-xs font-semibold py-2 text-slate-700/80 tracking-wider ml-3 cursor-pointer
-    }
+        @apply text-xs font-semibold py-2 text-slate-700/80 tracking-wider ml-3 cursor-pointer inline-block
+    } */
 
     nav > ul {
         @apply m-2 list-inside
@@ -154,6 +154,18 @@
 
     nav ul li ul li h2 + ul {
         @apply ml-6
+    }
+
+    .side-nav li {
+        @apply antialiased text-sm list-outside text-primary-300 pb-3 marker:content-['\276F'] !pl-2
+    }
+
+    .side-nav ul {
+        @apply list-outside mt-2 list-none pl-4
+    }
+
+    .side-nav li ul {
+        @apply pl-4
     }
 
     td.test {

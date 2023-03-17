@@ -615,12 +615,12 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.doc-content a {
+.doc-content a, .side-nav a {
   --tw-text-opacity: 1;
   color: rgb(99 102 241 / var(--tw-text-opacity));
 }
 
-.doc-content a:hover {
+.doc-content a:hover, .side-nav a:hover {
   --tw-text-opacity: 1;
   color: rgb(67 56 202 / var(--tw-text-opacity));
   text-decoration-line: underline;
@@ -788,7 +788,7 @@ html, body {
   background-color: rgb(255 241 242 / var(--tw-bg-opacity))
 }
 
-nav li h1 {
+nav li h1, nav li h2, nav li h3 {
   display: inline-block;
   cursor: pointer;
   padding-top: 0.5rem;
@@ -805,22 +805,14 @@ nav li h1 {
   list-style-type: square;
   font-size: 1rem;
   line-height: 1.5rem;
-  color: rgb(148 163 184 / var(--tw-text-opacity));
   --tw-text-opacity: 1;
   color: rgb(129 140 248 / var(--tw-text-opacity));
 }
 
-nav li h2 {
-  margin-left: 0.75rem;
-  cursor: pointer;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: rgb(51 65 85 / 0.8);
-}
+/* 
+    nav li h2 {
+        @apply text-xs font-semibold py-2 text-slate-700/80 tracking-wider ml-3 cursor-pointer inline-block
+    } */
 
 nav > ul {
   margin: 0.5rem;
@@ -873,6 +865,39 @@ nav ul li ul li h2 + ul {
   margin-left: 1.5rem;
 }
 
+.side-nav li {
+  list-style-position: outside;
+  padding-bottom: 0.75rem;
+  padding-left: 0.5rem !important;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(165 180 252 / var(--tw-text-opacity));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.side-nav li *::marker {
+  --tw-content: '\276F';
+  content: var(--tw-content);
+}
+
+.side-nav li::marker {
+  --tw-content: '\276F';
+  content: var(--tw-content);
+}
+
+.side-nav ul {
+  margin-top: 0.5rem;
+  list-style-position: outside;
+  list-style-type: none;
+  padding-left: 1rem;
+}
+
+.side-nav li ul {
+  padding-left: 1rem;
+}
+
 td.test {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
@@ -922,52 +947,16 @@ td.production {
   right: auto;
 }
 
-.top-16 {
-  top: 4rem;
-}
-
 .top-\[3\.8125rem\] {
   top: 3.8125rem;
-}
-
-.top-\[82px\] {
-  top: 82px;
-}
-
-.top-14 {
-  top: 3.5rem;
-}
-
-.top-\[100px\] {
-  top: 100px;
-}
-
-.top-\[65px\] {
-  top: 65px;
-}
-
-.top-\[63px\] {
-  top: 63px;
 }
 
 .top-\[62px\] {
   top: 62px;
 }
 
-.top-\[70px\] {
-  top: 70px;
-}
-
-.top-\[75px\] {
-  top: 75px;
-}
-
-.top-\[72px\] {
-  top: 72px;
-}
-
-.top-\[80px\] {
-  top: 80px;
+.top-\[82px\] {
+  top: 82px;
 }
 
 .\!z-30 {
@@ -1024,6 +1013,14 @@ td.production {
   margin-bottom: auto;
 }
 
+.-mt-0 {
+  margin-top: -0px;
+}
+
+.-mt-0\.5 {
+  margin-top: -0.125rem;
+}
+
 .-mt-8 {
   margin-top: -2rem;
 }
@@ -1056,18 +1053,6 @@ td.production {
   margin-left: 1.5rem;
 }
 
-.mr-3 {
-  margin-right: 0.75rem;
-}
-
-.mt-0 {
-  margin-top: 0px;
-}
-
-.mt-0\.5 {
-  margin-top: 0.125rem;
-}
-
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -1080,36 +1065,12 @@ td.production {
   margin-top: 0.5rem;
 }
 
-.mt-2\.5 {
-  margin-top: 0.625rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
-}
-
 .mt-4 {
   margin-top: 1rem;
 }
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.-mt-1 {
-  margin-top: -0.25rem;
-}
-
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
-
-.-mt-0 {
-  margin-top: -0px;
-}
-
-.-mt-0\.5 {
-  margin-top: -0.125rem;
 }
 
 .block {
@@ -1244,6 +1205,10 @@ td.production {
   list-style-position: outside;
 }
 
+.list-none {
+  list-style-type: none;
+}
+
 .list-square {
   list-style-type: square;
 }
@@ -1268,6 +1233,10 @@ td.production {
   overflow-y: auto;
 }
 
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
 .whitespace-pre {
   white-space: pre;
 }
@@ -1280,12 +1249,12 @@ td.production {
   border-radius: 0.5rem;
 }
 
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
 .rounded-md {
   border-radius: 0.375rem;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
 }
 
 .border {
@@ -1369,6 +1338,10 @@ td.production {
   background-color: rgb(224 231 255 / var(--tw-bg-opacity));
 }
 
+.bg-primary-300\/50 {
+  background-color: rgb(165 180 252 / 0.5);
+}
+
 .bg-primary-50\/70 {
   background-color: rgb(238 242 255 / 0.7);
 }
@@ -1420,28 +1393,6 @@ td.production {
   background-color: rgb(255 255 255 / 0.9);
 }
 
-.bg-slate-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
-}
-
-.bg-slate-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
-}
-
-.bg-slate-300\/80 {
-  background-color: rgb(203 213 225 / 0.8);
-}
-
-.bg-slate-300\/50 {
-  background-color: rgb(203 213 225 / 0.5);
-}
-
-.bg-primary-300\/50 {
-  background-color: rgb(165 180 252 / 0.5);
-}
-
 .bg-\[length\:40px_40px\] {
   background-size: 40px 40px;
 }
@@ -1458,6 +1409,10 @@ td.production {
   padding: 0.25rem;
 }
 
+.p-1\.5 {
+  padding: 0.375rem;
+}
+
 .p-3 {
   padding: 0.75rem;
 }
@@ -1468,14 +1423,6 @@ td.production {
 
 .p-9 {
   padding: 2.25rem;
-}
-
-.p-2 {
-  padding: 0.5rem;
-}
-
-.p-1\.5 {
-  padding: 0.375rem;
 }
 
 .px-1 {
@@ -1518,6 +1465,14 @@ td.production {
   padding-bottom: 1rem;
 }
 
+.\!pl-2 {
+  padding-left: 0.5rem !important;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
 .pb-10 {
   padding-bottom: 2.5rem;
 }
@@ -1532,6 +1487,10 @@ td.production {
 
 .pl-3 {
   padding-left: 0.75rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
 }
 
 .pl-\[63px\] {
@@ -1564,14 +1523,6 @@ td.production {
 
 .pt-6 {
   padding-top: 1.5rem;
-}
-
-.pb-1 {
-  padding-bottom: 0.25rem;
-}
-
-.pb-2 {
-  padding-bottom: 0.5rem;
 }
 
 .text-left {
@@ -1659,6 +1610,10 @@ td.production {
   font-weight: 100;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .leading-6 {
   line-height: 1.5rem;
 }
@@ -1699,6 +1654,11 @@ td.production {
 .text-cyan-600 {
   --tw-text-opacity: 1;
   color: rgb(8 145 178 / var(--tw-text-opacity));
+}
+
+.text-primary-300 {
+  --tw-text-opacity: 1;
+  color: rgb(165 180 252 / var(--tw-text-opacity));
 }
 
 .text-primary-400 {
@@ -1817,8 +1777,18 @@ td.production {
   color: rgb(165 180 252 );
 }
 
+.marker\:content-\[\'\\276F\'\] *::marker {
+  --tw-content: '\276F';
+  content: var(--tw-content);
+}
+
 .marker\:text-primary-300::marker {
   color: rgb(165 180 252 );
+}
+
+.marker\:content-\[\'\\276F\'\]::marker {
+  --tw-content: '\276F';
+  content: var(--tw-content);
 }
 
 .placeholder\:text-left::-moz-placeholder {
