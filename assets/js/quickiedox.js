@@ -162,17 +162,25 @@ ajaxCall = (url, callback, method = 'GET', data) => {
   drawSidenav = () => {
     let headings = domElements('.doc-content h2, .doc-content h3, .doc-content h4, .doc-content h5, .doc-content h6');
     let nav = '<ul>';
+    let ul_open = false;
+    
     headings.forEach((el, index) => {
         el.setAttribute('id', sluggable(el.innerText));
-        el.setAttribute('style', 'scroll-margin-top: 6rem');
-        const this_level = parseInt(el.tagName.charAt(1), 10);
-        const previous_level = (index > 0) ? parseInt(headings[index-1].tagName.charAt(1), 10) : this_level;
-        if(this_level > previous_level) nav+= `<ul>`;
-        nav+= `<li><a href="#${sluggable(el.innerText)}">${el.innerText}</a>`;
-        if(this_level > previous_level) {
-            nav+= `</li></ul>`;
+        el.setAttribute('style', 'scroll-margin-top: 6rem');    
+        let this_level = parseInt(el.tagName.charAt(1), 10);
+        let previous_level = (index > 0) ? parseInt(headings[index-1].tagName.charAt(1), 10) : this_level;
+        let next_level = ((index+1) < headings.length) ? parseInt(headings[index+1].tagName.charAt(1), 10) : this_level;
+        let link_text = `<a href="#${sluggable(el.innerText)}">${el.innerText}</a>`;
+        
+        if (this_level > previous_level) {
+            nav += '<ul>';
+            ul_open = true;
         }
+        nav+= `<li>${link_text}`;
+        if (ul_open && this_level > next_level) nav += '</li></ul>';
+        if (this_level === next_level) nav += '</li>';
     });
+
     nav += '</ul>';
     domElement('.side-nav').innerHTML = nav;
   }
