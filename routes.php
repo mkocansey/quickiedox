@@ -4,9 +4,9 @@
     $url_prefix = get_url_prefix();
 
     Router::get('', 'DocController@index');
-    Router::get('get-markdown', 'DocController@clone_init');
-    Router::post('get-markdown', 'DocController@clone_init');
-    Router::get('clone', 'DocController@clone');
+    Router::get('clone', 'DocController@clone_init');
+    Router::post('clone', 'DocController@clone_init');
+    Router::get('cloning', 'DocController@clone');
 
     if($url_prefix !== '') {
         Router::get(strip_slash($url_prefix, -1), 'DocController@read');

@@ -112,7 +112,7 @@ ajaxCall = (url, callback, method = 'GET', data) => {
         let result = data.data;
         domElement('.clone-info').innerHTML += message;
         if( (result !== undefined) && parseInt(result.branch) !== 0 && status) {
-            ajaxCall(`/clone?branch=${result.branch}`, 'cloneCallback');
+            ajaxCall(`/cloning?branch=${result.branch}`, 'cloneCallback');
         }
     }
   }
