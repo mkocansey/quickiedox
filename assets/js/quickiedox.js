@@ -196,3 +196,9 @@ ajaxCall = (url, callback, method = 'GET', data) => {
     let find = /[\s.!@#\$%\^&*\(\)+{}\/\\<>:;\[\]=`~,|]/g;
     return text.replace(find, '-').toLowerCase();
   }
+
+  show = (element) => { domElement(element).classList.remove('hidden'); }
+  
+  hide = (element) => { domElement(element).classList.add('hidden'); }
+
+  

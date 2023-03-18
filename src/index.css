@@ -125,11 +125,11 @@
     }
 
     nav li h1, nav li h2, nav li h3 {
-        @apply text-sm font-semibold pt-2 text-slate-700 dark:text-slate-400/70 tracking-wider pb-3 cursor-pointer inline-block
+        @apply block dark:bg-slate-900 p-2 pl-4 cursor-pointer tracking-wider font-semibold text-primary-300 mt-1 md:mt-0 md:text-sm md:pt-2 md:pl-0 md:text-slate-700 md:dark:text-slate-400/70 md:pb-3 md:inline-block md:dark:bg-transparent
     }
 
     :is(nav li):has(h1), :is(nav li):has(h2)  {
-        @apply text-base text-primary-400 dark:text-primary-500/40 list-square
+        @apply text-base text-primary-400 dark:text-primary-500/40 list-none md:list-square
     }
 
     nav > ul {
@@ -141,11 +141,11 @@
     }
 
     nav li ul li a {
-        @apply border-l border-slate-100 dark:border-slate-800/70 pl-3 block py-2 text-sm text-slate-600/80 dark:text-slate-400/80 hover:text-slate-900 dark:hover:text-slate-400 hover:border-l hover:border-slate-400 dark:hover:border-slate-700
+        @apply md:border-l border-slate-100 dark:border-slate-800/70 pl-3 block py-3 md:py-2 text-sm text-slate-600/80 dark:text-slate-400/80 hover:text-slate-900 dark:hover:text-slate-400 hover:border-l hover:border-slate-400 dark:hover:border-slate-700
     }
 
     nav a.selected {
-        @apply border-l border-primary-800 dark:border-slate-600 text-primary-800/80 dark:text-primary-400 hover:text-primary-800/80 dark:hover:text-primary-400 hover:border-l hover:border-primary-800 dark:hover:border-slate-600 bg-primary-50/70 dark:bg-slate-800/70
+        @apply md:border-l border-primary-800 dark:border-slate-600 text-primary-800/80 dark:text-primary-400 hover:text-primary-800/80 dark:hover:text-primary-400 hover:border-l hover:border-primary-800 dark:hover:border-slate-600 bg-primary-50/70 dark:bg-slate-800/70
     }
 
     nav ul li ul li h2 + ul {

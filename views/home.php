@@ -11,7 +11,7 @@
                 <img src="/assets/images/logo.svg" alt="QuickieDox Logo" class="h-16 mx-auto" />
                 <img src="/assets/images/create-docs.svg" alt="Create Docs" class="mx-auto w-3/5 my-16" />
 
-                <h1 class="text-5xl md:text-6xl font-semibold text-center text-slate-700">
+                <h1 class="text-3xl md:text-6xl font-semibold text-center text-slate-700">
                     Quickly create elegant documentation from markdown files
                 </h1>
                 <div class="text-center pt-12 pb-4">
