@@ -6,7 +6,7 @@
         <!--- TOP BAR --->
         <div class="bg-slate-100 dark:bg-slate-900 shadow-lg dark:shadow-none shadow-blue-100/80 border-b border-slate-300/60 dark:border-slate-800 fixed w-full z-50 py-2.5">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" onclick="show('.nav-column')"
-                class="md:hidden absolute top-2.5 left-1 dark:text-slate-400 w-8 h-8 dark:bg-slate-800 bg-slate-200 px-1 rounded-md">
+                class="md:hidden absolute top-2.5 left-1 dark:text-slate-400 w-8 h-8 dark:bg-slate-800 bg-slate-200 px-1 rounded-md mobile-nav-launcher">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"></path>
             </svg>
             <div class="max-w-8xl mx-auto flex px-4 md:p-0">
@@ -18,8 +18,8 @@
                 <div class="relative hidden sm:block md:basis-1/3">
                     <input type="text" placeholder="Quick Search" onkeyup="search(this.value)" 
                         class="absolute w-full border border-primary-200/70 dark:border-slate-900 rounded-full py-2 px-9 focus:outline-none focus:shadow-inner focus:ring-2 focus:ring-primary-500 dark:ring-slate-800 text-primary-600 dark:text-primary-300 mt-[-1px] dark:bg-white/5 search placeholder:dark:opacity-50" />
-                    <span class="absolute mt-2 text-sm opacity-20 dark:text-primary-200 right-4 cursor-default search-shortcut"></span>
-                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5 absolute ml-3 mt-2 dark:mt-2.5 opacity-20 dark:text-primary-200">
+                    <span class="absolute mt-2.5 text-sm opacity-20 dark:text-primary-200 right-4 cursor-default cmd-ctrl-k search-shortcut"></span>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5 absolute ml-3 mt-2.5 opacity-20 dark:text-primary-200">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
                     </svg>
                 </div>

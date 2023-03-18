@@ -1311,6 +1311,10 @@ td.production {
   margin-top: -1px;
 }
 
+.mt-2\.5 {
+  margin-top: 0.625rem;
+}
+
 .block {
   display: block;
 }
