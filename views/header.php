@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="scroll-smooth dark">
+<html class="scroll-smooth">
 <head>
     <title><?php echo $page_title ?? \App\Core\App::get('default_page_title') ?></title>
     <meta charset="UTF-8">

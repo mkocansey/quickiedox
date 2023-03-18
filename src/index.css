@@ -125,7 +125,7 @@
     }
 
     nav li h1, nav li h2, nav li h3 {
-        @apply block dark:bg-slate-900 p-2 pl-4 cursor-pointer tracking-wider font-semibold text-primary-300 mt-1 md:mt-0 md:text-sm md:pt-2 md:pl-0 md:text-slate-700 md:dark:text-slate-400/70 md:pb-3 md:inline-block md:dark:bg-transparent
+        @apply block bg-slate-100 md:bg-transparent dark:bg-slate-900 p-2 pl-4 cursor-pointer tracking-wider font-semibold text-slate-700 dark:text-primary-300 mt-1 md:mt-0 md:text-sm md:pt-2 md:pl-0 md:text-slate-700 md:dark:text-slate-400/70 md:pb-3 md:inline-block md:dark:bg-transparent
     }
 
     :is(nav li):has(h1), :is(nav li):has(h2)  {

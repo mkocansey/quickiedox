@@ -183,7 +183,7 @@ ajaxCall = (url, callback, method = 'GET', data) => {
 
     nav += '</ul>';
     domElement('.side-nav').innerHTML = nav;
-  }
+  } 
 
   setHeadingIds = () => {
     let headings = domElements('.doc-content h2, .doc-content h3, .doc-content h4, .doc-content h5, .doc-content h6');
@@ -201,4 +201,10 @@ ajaxCall = (url, callback, method = 'GET', data) => {
   
   hide = (element) => { domElement(element).classList.add('hidden'); }
 
-  
+  setTheme = (onload = false) => {
+    let theme;
+    theme = (onload) ? window.localStorage.getItem('theme') || 'light' : ((domElement('html').classList.contains('dark')) ? 'light' : 'dark');    
+    (theme === 'light') ? domElement('html').classList.remove('dark') : domElement('html').classList.add('dark');
+    window.localStorage.setItem('theme', theme);
+    console.log(theme);
+  }

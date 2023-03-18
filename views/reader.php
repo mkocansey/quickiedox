@@ -6,7 +6,7 @@
         <!--- TOP BAR --->
         <div class="bg-slate-100 dark:bg-slate-900 shadow-lg dark:shadow-none shadow-blue-100/80 border-b border-slate-300/60 dark:border-slate-800 fixed w-full z-50 py-2.5">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" onclick="show('.nav-column')"
-                class="md:hidden absolute top-2.5 left-1 dark:text-slate-400 w-8 h-8 dark:bg-slate-800 px-1 rounded-md">
+                class="md:hidden absolute top-2.5 left-1 dark:text-slate-400 w-8 h-8 dark:bg-slate-800 bg-slate-200 px-1 rounded-md">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"></path>
             </svg>
             <div class="max-w-8xl mx-auto flex px-4 md:p-0">
@@ -80,7 +80,7 @@
         <!--- end search box --->
 
         <div class="w-full lg:max-w-8xl mx-auto md:flex">
-            <div class="nav-column hidden md:!block md:z-40 z-50 inset-0 top-0 md:top-[82px] md:w-[17.5rem] w-10/12 pb-10 md:pt-6 overflow-y-auto border-r border-slate-100 dark:border-slate-800/70 fixed md:left-[max(0px,calc(50%-45rem))] left-0 md:right-auto md:px-4 dark:bg-slate-800 md:bg-transparent md:dark:bg-transparent shadow-2xl md:shadow-none dark:shadow-slate-900">
+            <div class="nav-column hidden bg-white md:!block md:z-40 z-50 inset-0 top-0 md:top-[82px] md:w-[17.5rem] w-10/12 pb-10 md:pt-6 overflow-y-auto border-r border-slate-100 dark:border-slate-800/70 fixed md:left-[max(0px,calc(50%-45rem))] left-0 md:right-auto md:px-4 dark:bg-slate-800 md:bg-transparent md:dark:bg-transparent shadow-2xl md:shadow-none dark:shadow-slate-900">
                 <div class="p-2 cursor-pointer text-right md:hidden mr-3" onclick="hide('.nav-column')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 dark:text-slate-500 inline-block">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
@@ -106,6 +106,7 @@
 </html>
 <script src="/assets/js/prism.js"></script>
 <script>
+    setTheme(true);
     setPageTitle();
     collapseAll(true);
     highlightThisPageInNav('<?php echo strip_slash(get_url_prefix(),-1) ?>');

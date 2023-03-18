@@ -925,23 +925,28 @@ nav li h1, nav li h2, nav li h3 {
   margin-top: 0.25rem;
   display: block;
   cursor: pointer;
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
   padding: 0.5rem;
   padding-left: 1rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   --tw-text-opacity: 1;
-  color: rgb(165 180 252 / var(--tw-text-opacity));
+  color: rgb(51 65 85 / var(--tw-text-opacity));
 }
 
 .dark nav li h1,.dark  nav li h2,.dark  nav li h3 {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(165 180 252 / var(--tw-text-opacity));
 }
 
 @media (min-width: 768px) {
   nav li h1, nav li h2, nav li h3 {
     margin-top: 0px;
     display: inline-block;
+    background-color: transparent;
     padding-top: 0.5rem;
     padding-left: 0px;
     padding-bottom: 0.75rem;
@@ -1628,6 +1633,11 @@ td.production {
 
 .bg-slate-100\/50 {
   background-color: rgb(241 245 249 / 0.5);
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 
 .bg-slate-200\/50 {
