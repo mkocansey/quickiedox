@@ -104,6 +104,11 @@ return [
     'display_line_numbers' => getenv('DISPLAY_LINE_NUMBERS') ?: false,
 
     /**
+     * by default HTML tags in .md files are stripped, allowing only valid markdown syntax
+     */
+    'allow_html_in_markdown' => getenv('ALLOW_HTML_IN_MARKDOWN') ?: false,
+
+    /**
      * When cloning your  .md doc files in the browser, you will need to
      * verify using the PIN specified in this variable.
      * Because QuickieDox is open source, anyone can know there is a url

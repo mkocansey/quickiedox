@@ -1,5 +1,6 @@
 <?php
     use \App\Core\App;
+    $total_versioins = (null !== App::get('doc_versions')) ? count(App::get('doc_versions')) : 0;
     require_once 'header.php';
 ?>
     <body>
@@ -35,7 +36,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
                         </svg>
                     </a>
-                    <div class="relative inline-block group">
+                    <div class="relative <?php echo ($total_versioins > 1) ? 'inline-block' : 'hidden' ?> group">
                         <button class="bg-primary-300/30 text-primary-600 dark:bg-slate-800 dark:text-primary-100 py-2 pl-3 pr-2 rounded-lg text-xs hover:bg-primary-400 dark:opacity-80 dark:hover:opacity-100 hover:text-primary-100 tracking-wider" tabindex="2">
                             <?php echo variable('current_version', 'session') ?? App::get('default_doc_version') ?>
                             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="inline w-4 h-4">
@@ -43,7 +44,7 @@
                             </svg>
                         </button>
                         <div class="absolute -mt-8 rounded-lg bg-primary-100 dark:bg-slate-800 dark:text-primary-100 py-2 text-sm hidden group-hover:block">
-                            <?php if(count(App::get('doc_versions')) > 1) {
+                            <?php if($total_versioins > 1) {
                                 foreach(App::get('doc_versions') as $branch) {
                             ?>
                                 <a href="/<?php echo get_url_prefix()."{$branch}" ?>" class="block py-2 pl-3 pr-8 text-left border-b border-primary-200 hover:bg-primary-400 hover:text-primary-100"><?php echo $version; ?></a>

@@ -32,7 +32,10 @@ class Doc
     {
         $page = ($page !== null) ? $this->appendMdExtension($page) : $this->page;
 
-        $config = [];
+        $config = [ 
+            'html_input' => (! App::get('allow_html_in_markdown')) ? 'strip' : 'allow', 
+            'allow_unsafe_links' => false 
+        ];
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
         $environment->addExtension(new GithubFlavoredMarkdownExtension());
