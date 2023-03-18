@@ -20,7 +20,7 @@
                         </form>
                     <?php } elseif($action == 'clone') { ?>
                         <div class="text-xs leading-6 clone-info">cloning docs please wait...</div>
-                        <script>ajaxCall('/clone?branch=0', 'cloneCallback');</script>
+                        <script>ajaxCall('/cloning?branch=0', 'cloneCallback');</script>
                 <?php }?>
                 <?php } else { ?>
                     <div class="opacity-40 py-4 text-center">You first need to provide a value for <code class="inline font-bold">MD_REPO_URL</code> and <code class="inline font-bold">GIT_CLONE_PIN</code> in your .env file or <code class="inline font-bold">md_repo_url</code> and <code class="inline font-bold">git_clone_pin</code> in config.php</div>
