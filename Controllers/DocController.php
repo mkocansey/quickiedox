@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Core\App;
+use App\Core\Doc;
 use App\Core\Session;
 class DocController
 {
