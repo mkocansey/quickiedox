@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Controllers;
 
 use App\Core\App;
-use App\Core\Doc;
 use App\Core\Session;
-
 class DocController
 {
     private Doc $doc;
@@ -24,7 +21,7 @@ class DocController
 
     public function index(): string
     {
-        if(App::get('show_index_page')) return view('home');
+        if (App::get('show_index_page')) return view('home');
         return $this->doc->load();
     }
 
@@ -55,10 +52,10 @@ class DocController
 
     public function clone_init( bool $has_error = false, string $action = 'pin'): string
     {
-        if(variable('pin', 'post')) {
+        if (variable('pin', 'post')) {
             $pin = variable('pin', 'post');
             $has_error = ($pin !== App::get('git_clone_pin'));
-            if(! $has_error) {
+            if (! $has_error) {
                 $action = 'clone';
                 Session::put([ 'clone' => 'start' ]);
             }
@@ -73,14 +70,14 @@ class DocController
 
     public function clone()
     {
-        if(! variable('clone', 'session')) {
+        if (! variable('clone', 'session')) {
             die(api_response([
                 'status' => false, 
                 'message' => 'you cannot clone without first verifying your pin'
             ]));
         }
         $repo_directory = dirname(__DIR__) . '/' . App::get('docs_directory');
-        if(!is_dir($repo_directory)) {
+        if (!is_dir($repo_directory)) {
             if ( ! mkdir($repo_directory) ) {
                 die(api_response([
                     'status' => false,
@@ -88,7 +85,7 @@ class DocController
                 ]));
             }
         }
-        if(!is_writable($repo_directory)) {
+        if (!is_writable($repo_directory)) {
             die(api_response([
                 'status' => false,
                 'message' => "<br />Unable to write into $repo_directory"
@@ -132,7 +129,7 @@ class DocController
                         );
             exec("git clone --branch $version --single-branch $repo_url $version_directory 2>&1");
         }
-        if( $this_version < count($doc_versions) ) {
+        if ($this_version < count($doc_versions) ) {
             $this_version++;
             Session::put(['clone' => $this_version]);
             die(api_response([
