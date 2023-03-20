@@ -1,11 +1,11 @@
 <?php
     @session_start();
 
-    use App\Core\Envy;
-    use App\Core\Router;
-    use App\Core\Request;
-
     require 'vendor/autoload.php';
+
+    use QuickieDox\Envy;
+    use QuickieDox\Router;
+    use QuickieDox\Request;
 
     /**
      * load the content of the .env file
@@ -16,10 +16,10 @@
     /**
      * load all variables defined in config.php and make them accessible globally
      */
-    require 'Core/bootstrap.php';
+    require 'core/bootstrap.php';
 
     /**
      * load routes from the routes.php file
-     * mapping of routes to their respective controllers is handed in Core/Router.php
+     * mapping of routes to their respective controllers is handed in core/Router.php
      */
     Router::load('routes.php')->direct(Request::uri(), Request::method());

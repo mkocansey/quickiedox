@@ -1,6 +1,4 @@
 <?php
-    use \App\Core\Doc;
-    use \App\Core\App;
     $page_title = 'QuickieDox: Quickly create elegant documentation from markdown files';
     require_once 'header.php';
 ?>

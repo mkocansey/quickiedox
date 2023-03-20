@@ -9,7 +9,7 @@
                 <?php if( $can_clone) { ?>
                     <?php if($action == 'pin') { ?>
                         <form method="post" action="/clone">
-                            <div class="opacity-40 py-4">Clone markdown files from: <br /><?php echo App\Core\App::get('md_repo_url'); ?></div>
+                            <div class="opacity-40 py-4">Clone markdown files from: <br /><?php echo QuickieDox\App::get('md_repo_url'); ?></div>
                             <?php if(variable('pin') && $has_error) { ?>
                                 <div class="bg-rose-100 text-rose-700 px-4 py-2 mb-4">
                                     You entered an invalid PIN

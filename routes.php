@@ -1,5 +1,5 @@
 <?php
-    use \App\Core\Router;
+    use QuickieDox\Router;
 
     $url_prefix = get_url_prefix();
 

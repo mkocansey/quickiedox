@@ -1,7 +1,5 @@
 <?php
-
-namespace App\Core;
-
+namespace QuickieDox;
 
 class Request
 {

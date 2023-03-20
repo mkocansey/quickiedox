@@ -1,9 +1,10 @@
 <?php
-namespace App\Controllers;
+namespace QuickieDox\Controllers;
 
-use App\Core\App;
-use App\Core\Doc;
-use App\Core\Session;
+use QuickieDox\App;
+use QuickieDox\Doc;
+use QuickieDox\Session;
+
 class DocController
 {
     private Doc $doc;
@@ -11,6 +12,9 @@ class DocController
     private string $version;
     private string $error_page;
 
+    /**
+     * @throws \Exception
+     */
     public function __construct()
     {
         $this->page = variable('dynamic_route_params')['page'] ?? App::get('default_doc_page');
@@ -20,22 +24,36 @@ class DocController
         Session::put([ 'current_version' => $this->version ]);
     }
 
+    /**
+     * Return either home page or default documentation page
+     * @return string
+     * @throws \Exception
+     */
     public function index(): string
     {
         if (App::get('show_index_page')) return view('home');
         return $this->doc->load();
     }
 
+    /**
+     * Display 404 page
+     * @return string
+     */
     public function notFound(): string
     {
         return view('404');
     }
 
+    /**
+     * Load and read a document
+     * @return string
+     * @throws \Exception
+     */
     public function read(): string
     {
         $html = ($this->doc->exists()) ?
-                $this->doc->load() :
-                $this->format404($this->doc->load($this->error_page));
+            $this->doc->load() :
+            $this->format404($this->doc->load($this->error_page));
 
         return view('reader',
             [
@@ -46,11 +64,23 @@ class DocController
 
     }
 
+    /**
+     * Format 404 page
+     * @param string $content
+     * @return string
+     */
     private function format404(string $content): string
     {
         return '<div class="notfound">' . $content . '</div>';
     }
 
+    /**
+     * Initial validations before cloning
+     * @param bool $has_error
+     * @param string $action
+     * @return string
+     * @throws \Exception
+     */
     public function clone_init( bool $has_error = false, string $action = 'pin'): string
     {
         if (variable('pin', 'post')) {
@@ -69,6 +99,11 @@ class DocController
         ]);
     }
 
+    /**
+     * Clone or update documentation versions from Git
+     * @return void
+     * @throws \Exception
+     */
     public function clone()
     {
         if (! variable('clone', 'session')) {
@@ -123,11 +158,11 @@ class DocController
                 ]));
             }
             $message =  sprintf(
-                            "<br>cloned %s of %s versions >> version <b>%s</b>", 
-                            ($this_version+1),
-                            count($doc_versions),
-                            $version
-                        );
+                "<br>cloned %s of %s versions >> version <b>%s</b>",
+                ($this_version+1),
+                count($doc_versions),
+                $version
+            );
             exec("git clone --branch $version --single-branch $repo_url $version_directory 2>&1");
         }
         if ($this_version < count($doc_versions) ) {
@@ -143,12 +178,11 @@ class DocController
             die(api_response([
                 'status' => true,
                 'message' => sprintf('<br />DONE...<a href="%s">Read Documentation</a>',
-                        get_url_prefix().
-                                append_slash(App::get('default_doc_version')).
-                                Doc::stripMdExtension(App::get('default_doc_page'))
-                            )
+                get_url_prefix().
+                    append_slash(App::get('default_doc_version')).
+                    Doc::stripMdExtension(App::get('default_doc_page'))
+                )
             ]));
         }
     }
-
 }

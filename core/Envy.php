@@ -1,6 +1,5 @@
 <?php
-
-namespace App\Core;
+namespace QuickieDox;
 
 use RuntimeException;
 

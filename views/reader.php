@@ -1,7 +1,9 @@
 <?php
-    use \App\Core\App;
-    $total_versioins = (null !== App::get('doc_versions')) ? count(App::get('doc_versions')) : 0;
+    use QuickieDox\App;
+
     require_once 'header.php';
+
+    $total_versions = (null !== App::get('doc_versions')) ? count(App::get('doc_versions')) : 0;
 ?>
     <body>
         <!--- TOP BAR --->
@@ -30,13 +32,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
                         </svg>
                     </a>
-                    <a href="javascript:show('.search-bar'); javascript: domElement('.find').focus()" 
+                    <a href="javascript:show('.search-bar'); domElement('.find').focus()"
                         class="md:hidden inline-block p-1.5 rounded-md bg-primary-300/30 dark:bg-slate-800 dark:text-primary-100 text-primary-600 hover:bg-primary-400 hover:text-primary-100 dark:opacity-80 dark:hover:opacity-100">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
                         </svg>
                     </a>
-                    <div class="relative <?php echo ($total_versioins > 1) ? 'inline-block' : 'hidden' ?> group">
+                    <div class="relative <?php echo ($total_versions > 1) ? 'inline-block' : 'hidden' ?> group">
                         <button class="bg-primary-300/30 text-primary-600 dark:bg-slate-800 dark:text-primary-100 py-2 pl-3 pr-2 rounded-lg text-xs hover:bg-primary-400 dark:opacity-80 dark:hover:opacity-100 hover:text-primary-100 tracking-wider" tabindex="2">
                             <?php echo variable('current_version', 'session') ?? App::get('default_doc_version') ?>
                             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="inline w-4 h-4">
@@ -44,7 +46,7 @@
                             </svg>
                         </button>
                         <div class="absolute -mt-8 rounded-lg bg-primary-100 dark:bg-slate-800 dark:text-primary-100 py-2 text-sm hidden group-hover:block">
-                            <?php if($total_versioins > 1) {
+                            <?php if($total_versions > 1) {
                                 foreach(App::get('doc_versions') as $branch) {
                             ?>
                                 <a href="/<?php echo get_url_prefix()."{$branch}" ?>" class="block py-2 pl-3 pr-8 text-left border-b border-primary-200 hover:bg-primary-400 hover:text-primary-100"><?php echo $version; ?></a>
@@ -93,7 +95,7 @@
             </div>
             <div class="lg:pl-[17.5rem] z-30 pl-0">
                 <div class="mx-auto pt-20 xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
-                    <div class="doc-content scroll-smooth prose p-4 pt-3 md:p-9 !z-30 <?php if(\App\Core\App::get('display_line_numbers')) echo ' line-numbers' ?>">
+                    <div class="doc-content scroll-smooth prose p-4 pt-3 md:p-9 !z-30 <?php if(App::get('display_line_numbers')) echo ' line-numbers' ?>">
                         <?php echo $content ?? ''; ?>
                     </div>
                     <div class="side-nav-container fixed z-20 top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 overflow-y-auto hidden xl:block">

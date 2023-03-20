@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="scroll-smooth">
 <head>
-    <title><?php echo $page_title ?? \App\Core\App::get('default_page_title') ?></title>
+    <title><?php echo $page_title ?? QuickieDox\App::get('default_page_title') ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" href="/assets/images/favicon.png" class="touch-icon" />

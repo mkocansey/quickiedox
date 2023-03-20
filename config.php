@@ -35,14 +35,14 @@ return [
     
     /**
      * if your doc pages require users to be logged in. If this is set to true, you will 
-     * need to update Core/Auth.php to write in your authentication logic.
+     * need to update core/Auth.php to write in your authentication logic.
      * authenticating users is not handled in this code base. 
      *  */
     'require_signin'       => getenv('REQUIRE_SIGNIN') ?: false,
     
     /**
      * if require_signin = true, all pages will check for the existence of the session 
-     * variable defined in Core/Authentication.php. you can however, whitelist pages you 
+     * variable defined in core/Authentication.php. you can however, whitelist pages you
      * want to make accessible all the time
      *  */
     'whitelisted_docs'  => [],
