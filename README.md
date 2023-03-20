@@ -105,11 +105,69 @@ The markdown files that make up the documentation are expected to sit in a direc
 &nbsp;
 ### Use The Inbuilt Cloning Tool
 
+&nbsp;
+#### via HTTP
+
+&nbsp;
+
 It is much easier to pull in your markdown files using the cloning URL that is built into QuickieDox. Assuming you are still running the app from the server we started above using `php -S localhost:8000`, you will need to visit the URL below.
 
 [http://localhost:8000/get-markdown](http://localhost:8000/get-markdown)
 
 Ensure you have properly modified your QuickieDox [configurations](https://quickiedox.com/docs/main/customize-config). The URL will ask for the PIN you defined in the `.env` or `.config.php` file as `GIT_CLONE_PIN`. You won't be able to use this URL if your PIN is blank. 
+
+&nbsp;
+
+#### via The clone.sh File
+
+&nbsp;
+
+Cloning via HTTP will work well if you are cloning from public repositories. If you are cloning your documentation from a private repository, using the `clone.sh` file is a better option. 
+
+Included at the root of the project is a `clone.sh` shell script that pulls in your markdown files from the repo you specify. You will need to edit the file to change the default values defined for `GIT_REPO_URL`, `DOCS_DIRECTORY` and `DOC_VERSIONS `.
+
+```bash
+# clone.sh
+
+#!/bin/bash
+
+# update this to your own documentation repo url
+
+GIT_REPO_URL="https://github.com/mkocansey/quickiedox-mds.git"
+
+
+# update this to the directory you prefer to clone your docs into
+
+DOCS_DIRECTORY="markdown"
+
+
+# note the versions are not strings
+# each version needs to be defined on its own line without quotes
+
+DOC_VERSIONS=(
+  main
+  #master
+  #2.x
+  #1.x
+)
+```
+
+Ensure the script has permissions to execute for owner and/or group. Run.
+
+```bash 
+ls -l clone.sh
+
+# you should get an output similar to the line below
+
+-rwxr-xr--@  1 your-username  your-group  1026 Mar 20 11:14 clone.sh
+```
+
+Now run this command to execute the shell script to pull in the documentation. 
+
+```bash
+./clone.sh
+```
+
 
 &nbsp;
 ### Copy and Paste
