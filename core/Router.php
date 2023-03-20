@@ -5,24 +5,40 @@ use Exception;
 
 class Router
 {
+    /**
+     * @var array|array[]
+     */
     public static array $routes = [
         'GET' => [],
         'POST' => []
     ];
 
-    public static function load($file): Router
+    /**
+     * @param string $file
+     * @return Router
+     */
+    public static function load(string $file): Router
     {
-        // $router = new static;
         require $file;
         return new static;
     }
 
-    public static function get($url, $controller): void
+    /**
+     * @param string $url
+     * @param string $controller
+     * @return void
+     */
+    public static function get(string $url, string$controller): void
     {
         self::$routes['GET'][strip_slash($url)] = $controller;
     }
 
-    public static function post($url, $controller): void
+    /**
+     * @param string $url
+     * @param string $controller
+     * @return void
+     */
+    public static function post(string $url, string $controller): void
     {
         self::$routes['POST'][strip_slash($url)] = $controller;
     }
@@ -30,7 +46,7 @@ class Router
     /**
      * @throws Exception
      */
-    public function direct($url, $requestType)
+    public function direct(string $url, string $requestType)
     {
         $this->hotSwap($url, $requestType);
 
@@ -46,7 +62,7 @@ class Router
     /**
      * @throws Exception
      */
-    public function callAction($controller, $action)
+    public function callAction(string $controller, string $action)
     {
         $controller_ = $controller;
         $controller = "QuickieDox\\Controllers\\$controller";
@@ -59,7 +75,12 @@ class Router
         return $controller->$action();
     }
 
-    private function hotSwap($url, $requestType)
+    /**
+     * @param string $url
+     * @param string $requestType
+     * @return void
+     */
+    private function hotSwap(string $url, string $requestType)
     {
         $url_parts = explode('/', $url);
         $array_keys = (array_keys(self::$routes[$requestType]));

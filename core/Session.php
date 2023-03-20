@@ -4,7 +4,11 @@ namespace QuickieDox;
 class Session
 {
 
-    public static function put($array = [])
+    /**
+     * @param array $array
+     * @return void
+     */
+    public static function put(array $array = [])
     {
         if (count($array) > 0 ) {
             foreach ( $array as $key=>$value ) {
@@ -13,7 +17,11 @@ class Session
         }
     }
 
-    public static function forget($array = [])
+    /**
+     * @param array $array
+     * @return void
+     */
+    public static function forget(array $array = [])
     {
         if (count($array) > 0 ) {
             foreach ( $array as $key ) {

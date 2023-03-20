@@ -5,7 +5,12 @@ use RuntimeException;
 
 class Envy
 {
-    public static function load(String $path) :void
+    /**
+     * Load .env file variables into $_ENV
+     * @param string $path
+     * @return void
+     */
+    public static function load(string $path) :void
     {
         if (!is_readable($path)) {
             throw new RuntimeException(sprintf('%s file is not readable', $path));
