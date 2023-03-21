@@ -6,6 +6,7 @@ use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Output\RenderedContentInterface;
 
 class Doc
 {
@@ -44,12 +45,15 @@ class Doc
     /**
      * Load and convert markdown file to HTML
      * @param string|null $page
-     * @return \League\CommonMark\Output\RenderedContentInterface
+     * @param bool $isPage
+     * @return RenderedContentInterface
      * @throws \Exception
      */
-    public function load(string $page = null): \League\CommonMark\Output\RenderedContentInterface
+    public function load(string $page = null, bool $isPage = true): \League\CommonMark\Output\RenderedContentInterface
     {
-        $page = ($page !== null) ? $this->appendMdExtension($page) : $this->page;
+
+        // if $isPage=false, we want to convert a markdown string not a whole file
+        $page = ($isPage) ? (($page !== null) ? $this->appendMdExtension($page) : $this->page) : $page;
 
         $config = [
             'html_input' => (! App::get('allow_html_in_markdown')) ? 'strip' : 'allow',
@@ -60,7 +64,7 @@ class Doc
         $environment->addExtension(new GithubFlavoredMarkdownExtension());
         $environment->addExtension(new AttributesExtension());
         $converter = new MarkdownConverter($environment);
-        return $converter->convertToHtml(file_get_contents($page));
+        return $converter->convertToHtml(($isPage)?file_get_contents($page):$page);
     }
 
     /**

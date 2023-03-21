@@ -60,24 +60,24 @@
         <!--- end top bar --->
 
         <!--- search box --->
-        <div class="fixed md:mx-10 w-full bg-white/90 dark:bg-slate-900 md:top-[62px] z-50 shadow-2xl dark:shadow-sm shadow-blue-100/80 dark:shadow-gray-800 hidden search-bar opacity-90 md:opacity-100 md:border-none border-2 border-slate-700 top-4 rounded-lg md:rounded-none">
-            <div class="flex md:hidden border-b border-slate-800 py-1">
-                <div class="p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-slate-500 ml-1">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
-                    </svg>
+        <div class="fixed w-full md:top-[60px] z-50 search-bar top-4 hidden">
+            <div class="md:mx-auto max-w-xl bg-white/90 dark:bg-slate-900 shadow-2xl dark:shadow-sm shadow-blue-100/80 dark:shadow-gray-800 search-bar opacity-90 md:opacity-100 border-2 border-t-none border-slate-200 rounded-xl md:rounded-tl-none md:rounded-tr-none">
+                <div class="flex md:hidden border-b border-slate-800 py-1">
+                    <div class="p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-slate-500 ml-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-grow p-1 pl-0">
+                        <input class="w-full p-1 ring-0 outline-none bg-transparent dark:placeholder:text-slate-500 dark:text-slate-400 mt-0.5 pr-2 find" placeholder="Search documentation" />
+                    </div>
+                    <div class="p-2 cursor-pointer" onclick="hide('.search-bar')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-slate-500 ml-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
                 </div>
-                <div class="flex-grow p-1 pl-0">
-                    <input class="w-full p-1 ring-0 outline-none bg-transparent dark:placeholder:text-slate-500 dark:text-slate-400 mt-0.5 pr-2 find" placeholder="Search documentation" />
-                </div>
-                <div class="p-2 cursor-pointer" onclick="hide('.search-bar')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-slate-500 ml-1">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </div>
-            </div>
-            <div class="md:max-w-4xl mx-auto md:py-10 min-h-[200px]">
-                this is a search bar
+                <div class="md:max-w-4xl mx-auto md:py-2 min-h-[200px] text-xs divide-y divide-slate-200 search-results"></div>
             </div>
         </div>
         <!--- end search box --->

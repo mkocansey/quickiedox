@@ -921,6 +921,31 @@ html, body {
   color: rgb(255 228 230 / var(--tw-text-opacity));
 }
 
+.search-results div {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  padding-right: 2.5rem;
+  line-height: 1.25rem;
+}
+
+.search-results div.result {
+  background-image: url('/assets/images/right.svg');
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 12px;
+  cursor: pointer
+}
+
+.search-results div.result:hover {
+  background-color: rgb(241 245 249 / 0.8);
+}
+
+.dark .search-results div.result:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+}
+
 nav li h1, nav li h2, nav li h3 {
   margin-top: 0.25rem;
   display: block;
@@ -1299,6 +1324,10 @@ td.production {
   margin-top: 0.5rem;
 }
 
+.mt-2\.5 {
+  margin-top: 0.625rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -1309,10 +1338,6 @@ td.production {
 
 .mt-\[-1px\] {
   margin-top: -1px;
-}
-
-.mt-2\.5 {
-  margin-top: 0.625rem;
 }
 
 .block {
@@ -1427,6 +1452,10 @@ td.production {
   max-width: 24rem;
 }
 
+.max-w-xl {
+  max-width: 36rem;
+}
+
 .flex-grow {
   flex-grow: 1;
 }
@@ -1481,6 +1510,17 @@ td.production {
 
 .gap-3 {
   gap: 0.75rem;
+}
+
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+
+.divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(226 232 240 / var(--tw-divide-opacity));
 }
 
 .overflow-y-auto {
@@ -1575,11 +1615,6 @@ td.production {
 
 .border-slate-300\/60 {
   border-color: rgb(203 213 225 / 0.6);
-}
-
-.border-slate-700 {
-  --tw-border-opacity: 1;
-  border-color: rgb(51 65 85 / var(--tw-border-opacity));
 }
 
 .border-slate-800 {
@@ -1790,8 +1825,16 @@ td.production {
   padding-left: 1rem;
 }
 
+.pl-5 {
+  padding-left: 1.25rem;
+}
+
 .pl-\[63px\] {
   padding-left: 63px;
+}
+
+.pr-10 {
+  padding-right: 2.5rem;
 }
 
 .pr-2 {
@@ -1913,6 +1956,10 @@ td.production {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.leading-5 {
+  line-height: 1.25rem;
 }
 
 .leading-6 {
@@ -2152,6 +2199,10 @@ td.production {
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-slate-100\/80:hover {
+  background-color: rgb(241 245 249 / 0.8);
+}
+
 .hover\:text-primary-100:hover {
   --tw-text-opacity: 1;
   color: rgb(224 231 255 / var(--tw-text-opacity));
@@ -2208,14 +2259,6 @@ td.production {
 
 .peer:placeholder-shown ~ .peer-placeholder-shown\:invisible {
   visibility: hidden;
-}
-
-.dark .dark\:mt-2 {
-  margin-top: 0.5rem;
-}
-
-.dark .dark\:mt-2\.5 {
-  margin-top: 0.625rem;
 }
 
 .dark .dark\:border-slate-600 {
@@ -2437,6 +2480,11 @@ td.production {
   border-color: rgb(51 65 85 / var(--tw-border-opacity));
 }
 
+.dark .dark\:hover\:bg-slate-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+}
+
 .dark .dark\:hover\:text-primary-400:hover {
   --tw-text-opacity: 1;
   color: rgb(129 140 248 / var(--tw-text-opacity));
@@ -2475,8 +2523,8 @@ td.production {
     right: auto;
   }
 
-  .md\:top-\[62px\] {
-    top: 62px;
+  .md\:top-\[60px\] {
+    top: 60px;
   }
 
   .md\:top-\[82px\] {
@@ -2487,9 +2535,9 @@ td.production {
     z-index: 40;
   }
 
-  .md\:mx-10 {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
+  .md\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .md\:ml-0 {
@@ -2540,16 +2588,16 @@ td.production {
     list-style-type: square;
   }
 
-  .md\:rounded-none {
-    border-radius: 0px;
+  .md\:rounded-tl-none {
+    border-top-left-radius: 0px;
+  }
+
+  .md\:rounded-tr-none {
+    border-top-right-radius: 0px;
   }
 
   .md\:border-l {
     border-left-width: 1px;
-  }
-
-  .md\:border-none {
-    border-style: none;
   }
 
   .md\:bg-transparent {
@@ -2567,11 +2615,6 @@ td.production {
   .md\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  .md\:py-10 {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
   }
 
   .md\:py-2 {

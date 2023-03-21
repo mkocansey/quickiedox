@@ -185,4 +185,62 @@ class DocController
             ]));
         }
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function search()
+    {
+        $keyword = variable('keyword', 'get');
+        $repo_directory = dirname(__DIR__) . '/' . App::get('docs_directory');
+        $version_directory = append_slash($repo_directory).$this->version;
+        $files = scandir($version_directory);
+        $results = [];
+        $allowed_tags = null;
+        if (count($files) > 0 ) {
+            foreach ($files as $file) {
+                if (str_ends_with($file, '.md')) {
+                    $pattern = "/^.*$keyword.*\$/m";
+                    $fh = fopen(append_slash($version_directory).$file, 'r') or die($php_errormsg);
+                    while (!feof($fh)) {
+                        $line = fgets($fh, 4096);
+                        if (preg_match($pattern, $line)) {
+                            $results[] = (object) [
+                                'file' => Doc::stripMdExtension($file),
+                                'heading' => 'header',
+                                'text' => strip_tags($this->doc->load($line, false), $allowed_tags)
+                            ];
+                        }
+                    }
+                    fclose($fh);
+                }
+            }
+            die(api_response([
+                'status' => true,
+                'data' => [
+                    'total' => count($results),
+                    'results' => $results
+                ]
+            ]));
+        }
+        die(api_response([
+            'status' => false,
+            'message' => "Nothing found for $keyword"
+        ]));
+    }
 }
+
+/*
+ *
+ // $file_content = strip_tags(file_get_contents(append_slash($version_directory).$file));
+    $pattern = preg_quote($keyword, '/');
+    $pattern = "/^.*$pattern.*\$/m";
+    if (preg_match_all($pattern, $file_content, $matches)) {
+        $results[] = $matches[0];
+    }
+
+    ///---
+    $pattern = "/^.*$keyword.*\$/m";
+    $results[] = preg_grep($pattern, file(append_slash($version_directory).$file));
+    --//
+ */

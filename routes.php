@@ -7,6 +7,7 @@
     Router::get('clone', 'DocController@clone_init');
     Router::post('clone', 'DocController@clone_init');
     Router::get('cloning', 'DocController@clone');
+    Router::get('search', 'DocController@search');
 
     if($url_prefix !== '') {
         Router::get(strip_slash($url_prefix, -1), 'DocController@read');

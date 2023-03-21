@@ -68,7 +68,7 @@ activateNavActions = () => {
 collapseAll = (cascade_collapse) => {
     let selector = (cascade_collapse) ? 'nav li ul' : 'nav li ul:not(:has(ul))';
     document.querySelectorAll(selector).forEach((el) => {
-    if(el.classList.contains('open') && el.classList.contains('hidden')) {
+    if (el.classList.contains('open') && el.classList.contains('hidden')) {
         el.classList.remove('open');
     } else {
         el.classList.add('hidden');
@@ -84,7 +84,7 @@ collapseAll = (cascade_collapse) => {
  */
 openUpNav = () => {
     let elem = domElement('li a.selected');
-    if(elem) {
+    if (elem) {
         for (; elem; elem = elem.parentNode) {
             let current_node = elem.nodeName.toLowerCase();
             if (current_node === 'ul') {
@@ -100,18 +100,18 @@ ajaxCall = (url, callback, method = 'GET', data) => {
     let xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
     xhr.onreadystatechange =  function() {
-        if (this.readyState == 4) window [callback](JSON.parse(this.response), this.status);
+        if (this.readyState === 4) window [callback](JSON.parse(this.response), this.status);
     }
     xhr.send();
   }
 
   cloneCallback = (data, status) => {
-    if ( status == 200  || status == 422 ) {
+    if (status === 200  || status === 422 ) {
         let status = data.status;
         let message = data.message;
         let result = data.data;
         domElement('.clone-info').innerHTML += message;
-        if( (result !== undefined) && parseInt(result.branch) !== 0 && status) {
+        if((result !== undefined) && parseInt(result.branch) !== 0 && status) {
             ajaxCall(`/cloning?branch=${result.branch}`, 'cloneCallback');
         }
     }
@@ -119,7 +119,7 @@ ajaxCall = (url, callback, method = 'GET', data) => {
 
   externalLinksOpenInNewWindow = () => {
     document.querySelectorAll('.doc-content a').forEach((el) => {
-        if( el.getAttribute('href').includes('http')) {
+        if(el.getAttribute('href').includes('http')) {
             el.setAttribute('target', '_blank');
         }
     });
@@ -127,18 +127,45 @@ ajaxCall = (url, callback, method = 'GET', data) => {
 
   search = (keyword) => {
     let search_bar = domElement('.search-bar');
-    if(keyword !== '') {
+      if (keyword.replace(/^(\s)+/g, '') !== '') {
         search_bar.classList.remove('hidden');
-        // make an ajax call with keyword
-    } else {
+        if (keyword.length > 2) {
+            domElement('.search-results').innerHTML = `Searching for <b>${keyword}</b>`;
+            ajaxCall(`/search?keyword=${keyword}`, 'searchCallback');
+        } else {
+            domElement('.search-results').innerHTML = '<div>Keyword too short</div>';
+        }
+      } else {
         search_bar.classList.add('hidden');
     }
+  }
+
+  searchCallback = (data, status) => {
+      if (status === 200  || status === 422) {
+          let status = data.status;
+          let message = data.message ?? null;
+          let result = data.data ?? null;
+          let search_results = domElement('.search-results');
+          if (status === true && result.results !== null) {
+              search_results.innerHTML = '';
+              if (result.total > 0) {
+                  for (let x = 0; x < result.results.length; x++) {
+                      let this_result = result.results[x];
+                      search_results.innerHTML += `<div class="result" onclick="location.href='${this_result.file}#${sluggable(this_result.heading)}'"><b>${this_result.heading}</b><br />${this_result.text}</div>`;
+                  }
+              } else {
+                  search_results.innerHTML = `<div>nothing found</div>`;
+              }
+          } else {
+              search_results.innerHTML = `<div>${message}</div>`;
+          }
+      }
   }
 
   listenForSearchShortcut = (event) => {
     document.addEventListener('keydown', (event) => {
         let key_code = event.key.toLowerCase();
-        if( (event.metaKey && key_code === 'k') || event.ctrlKey && key_code === 'k')
+        if((event.metaKey && key_code === 'k') || event.ctrlKey && key_code === 'k')
             domElement('.search').focus();
     });
       document.addEventListener('keyup', (event) => {
