@@ -43,7 +43,7 @@
         @apply text-primary-500 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:hover:underline
     }
 
-    .doc-content code.inline {
+    .doc-content code.inline, .result code.inline {
         @apply border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-700 px-1 text-sm text-cyan-600 dark:text-cyan-400
     }
 

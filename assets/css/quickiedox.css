@@ -670,7 +670,7 @@ html, body {
   text-decoration-line: underline;
 }
 
-.doc-content code.inline {
+.doc-content code.inline, .result code.inline {
   border-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(226 232 240 / var(--tw-border-opacity));
@@ -684,7 +684,7 @@ html, body {
   color: rgb(8 145 178 / var(--tw-text-opacity));
 }
 
-.dark .doc-content code.inline {
+.dark .doc-content code.inline,.dark  .result code.inline {
   --tw-border-opacity: 1;
   border-color: rgb(51 65 85 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
@@ -1400,6 +1400,22 @@ td.production {
   height: 100vh;
 }
 
+.max-h-screen {
+  max-height: 100vh;
+}
+
+.max-h-\[calc\(100\%_-_20rem\)\] {
+  max-height: calc(100% - 20rem);
+}
+
+.max-h-\[calc\(100vh_-_20rem\)\] {
+  max-height: calc(100vh - 20rem);
+}
+
+.max-h-\[calc\(100vh_-_10rem\)\] {
+  max-height: calc(100vh - 10rem);
+}
+
 .min-h-\[200px\] {
   min-height: 200px;
 }
@@ -1525,6 +1541,10 @@ td.production {
 
 .overflow-y-auto {
   overflow-y: auto;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 
 .scroll-smooth {
@@ -2640,6 +2660,14 @@ td.production {
 
   .md\:pt-6 {
     padding-top: 1.5rem;
+  }
+
+  .md\:pb-12 {
+    padding-bottom: 3rem;
+  }
+
+  .md\:pb-20 {
+    padding-bottom: 5rem;
   }
 
   .md\:text-6xl {

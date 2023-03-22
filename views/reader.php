@@ -77,7 +77,7 @@
                         </svg>
                     </div>
                 </div>
-                <div class="md:max-w-4xl mx-auto md:py-2 min-h-[200px] text-xs divide-y divide-slate-200 search-results"></div>
+                <div class="md:max-w-4xl mx-auto md:py-2 min-h-[200px] max-h-[calc(100vh_-_10rem)] overflow-y-scroll text-xs divide-y divide-slate-200 search-results"></div>
             </div>
         </div>
         <!--- end search box --->

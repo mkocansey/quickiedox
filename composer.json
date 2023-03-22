@@ -19,7 +19,8 @@
     "php": ">=7.4",
     "league/commonmark": "^2.3",
     "ext-curl": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-mbstring": "*"
   },
   "autoload" : {
     "psr-4" : {

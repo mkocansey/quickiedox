@@ -130,7 +130,7 @@ ajaxCall = (url, callback, method = 'GET', data) => {
       if (keyword.replace(/^(\s)+/g, '') !== '') {
         search_bar.classList.remove('hidden');
         if (keyword.length > 2) {
-            domElement('.search-results').innerHTML = `Searching for <b>${keyword}</b>`;
+            domElement('.search-results').innerHTML = '';//`Searching for <b>${keyword}</b>`;
             ajaxCall(`/search?keyword=${keyword}`, 'searchCallback');
         } else {
             domElement('.search-results').innerHTML = '<div>Keyword too short</div>';

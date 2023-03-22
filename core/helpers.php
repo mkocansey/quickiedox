@@ -128,3 +128,8 @@ function docs_home(): string
         append_slash(App::get('default_doc_version')).
         Doc::stripMdExtension(App::get('default_doc_page'));
 }
+
+function highlight_search($content, $keyword)
+{
+    return preg_replace("/$keyword/", '<code class="inline">'.$keyword.'</code>', $content);
+}

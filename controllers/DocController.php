@@ -196,19 +196,22 @@ class DocController
         $version_directory = append_slash($repo_directory).$this->version;
         $files = scandir($version_directory);
         $results = [];
+        $headings = [];
         $allowed_tags = null;
         if (count($files) > 0 ) {
             foreach ($files as $file) {
-                if (str_ends_with($file, '.md')) {
+                // look through all .md files except the navigation file
+                if (str_ends_with($file, '.md') && !str_contains($file, App::get('nav_page'))) {
                     $pattern = "/^.*$keyword.*\$/m";
                     $fh = fopen(append_slash($version_directory).$file, 'r') or die($php_errormsg);
                     while (!feof($fh)) {
                         $line = fgets($fh, 4096);
+                        if(preg_match('/^(#)+/', $line)) $headings[] = $line;
                         if (preg_match($pattern, $line)) {
                             $results[] = (object) [
                                 'file' => Doc::stripMdExtension($file),
-                                'heading' => 'header',
-                                'text' => strip_tags($this->doc->load($line, false), $allowed_tags)
+                                'heading' => trim(preg_replace("/^#+/", '', end($headings))),
+                                'text' => highlight_search(strip_tags($this->doc->load($line, false), $allowed_tags), $keyword)
                             ];
                         }
                     }
@@ -227,6 +230,26 @@ class DocController
             'status' => false,
             'message' => "Nothing found for $keyword"
         ]));
+    }
+}
+
+/**
+ * Adding PHP 7 compatibility
+ */
+if (!function_exists('str_ends_with')) {
+    function str_ends_with($str, $end): bool
+    {
+        return (@substr_compare($str, $end, -strlen($end))==0);
+    }
+}
+
+/**
+ * Adding PHP 7 compatibility
+ */
+if (!function_exists('str_contains')) {
+    function str_contains($haystack, $needle): bool
+    {
+        return $needle !== '' && mb_strpos($haystack, $needle) !== false;
     }
 }
 
