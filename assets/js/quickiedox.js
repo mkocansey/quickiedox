@@ -171,6 +171,11 @@ ajaxCall = (url, callback, method = 'GET', data) => {
       document.addEventListener('keyup', (event) => {
           let key_code = event.key.toLowerCase();
           if(key_code === '/') domElement('.search').focus();
+          if(key_code === 'escape') {
+              hide('.search-bar');
+              domElement('.search').blur();
+              domElement('.search').value = '';
+          }
       });
   }
 
