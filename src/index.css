@@ -125,7 +125,7 @@
     }
 
     .search-results div {
-        @apply leading-5 py-2 pl-5 pr-10
+        @apply leading-5 py-2 pl-5 pr-10 dark:text-slate-200
     }
 
     .search-results div.result {
@@ -133,7 +133,7 @@
         background-repeat: no-repeat;
         background-position: 98% center;
         background-size: 12px;
-        @apply hover:bg-slate-100/80 dark:hover:bg-slate-600 cursor-pointer
+        @apply hover:bg-slate-100/80 dark:hover:bg-slate-700 cursor-pointer dark:text-slate-300
     }
 
     nav li h1, nav li h2, nav li h3 {

@@ -151,7 +151,9 @@ ajaxCall = (url, callback, method = 'GET', data) => {
               if (result.total > 0) {
                   for (let x = 0; x < result.results.length; x++) {
                       let this_result = result.results[x];
-                      search_results.innerHTML += `<div class="result" onclick="location.href='${this_result.file}#${sluggable(this_result.heading)}'"><b>${this_result.heading}</b><br />${this_result.text}</div>`;
+                      search_results.innerHTML += `<div class="result" 
+                        onclick="location.href='${this_result.file}#${sluggable(this_result.heading)}';
+                        hide('.search-bar'); domElement('.search').value=''"><b>${this_result.heading}</b><br />${this_result.text}</div>`;
                   }
               } else {
                   search_results.innerHTML = `<div>nothing found</div>`;
@@ -225,7 +227,7 @@ ajaxCall = (url, callback, method = 'GET', data) => {
   }
 
   sluggable = (text) => {
-    let find = /[\s.!@#\$%\^&*\(\)+{}\/\\<>:;\[\]=`~,|]/g;
+    let find = /[\s.!@#\$%\^&*\(\)+{}\/\\<>:;\?\[\]=`~,|]/g;
     return text.replace(find, '-').toLowerCase();
   }
 
