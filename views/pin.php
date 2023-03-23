@@ -15,7 +15,7 @@
                                     You entered an invalid PIN
                                 </div>
                             <?php } ?>
-                            <input type="text" name="pin" placeholder="Enter PIN" class="border border-slate-300 outline-none text-xl p-4 focus:border-slate-600 w-full tracking-[1.5em] peer placeholder:tracking-normal placeholder:text-left text-center" />
+                            <input type="password" name="pin" placeholder="Enter PIN" class="border border-slate-300 outline-none text-xl p-4 focus:border-slate-600 w-full tracking-[1.5em] peer placeholder:tracking-normal placeholder:text-left text-center" />
                             <button type="submit" class="p-4 bg-primary-500 tracking-wide hover:bg-primary-600 text-white rounded-xl w-full mt-4 peer-placeholder-shown:invisible">Verify & Clone</button>
                         </form>
                     <?php } elseif($action == 'clone') { ?>
