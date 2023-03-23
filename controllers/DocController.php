@@ -252,18 +252,3 @@ if (!function_exists('str_contains')) {
         return $needle !== '' && mb_strpos($haystack, $needle) !== false;
     }
 }
-
-/*
- *
- // $file_content = strip_tags(file_get_contents(append_slash($version_directory).$file));
-    $pattern = preg_quote($keyword, '/');
-    $pattern = "/^.*$pattern.*\$/m";
-    if (preg_match_all($pattern, $file_content, $matches)) {
-        $results[] = $matches[0];
-    }
-
-    ///---
-    $pattern = "/^.*$keyword.*\$/m";
-    $results[] = preg_grep($pattern, file(append_slash($version_directory).$file));
-    --//
- */

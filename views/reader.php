@@ -4,10 +4,11 @@
     require_once 'header.php';
 
     $total_versions = (null !== App::get('doc_versions')) ? count(App::get('doc_versions')) : 0;
+    $uri_parts = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 ?>
     <body>
         <!--- TOP BAR --->
-        <div class="bg-slate-100 dark:bg-slate-900 shadow-lg dark:shadow-none shadow-blue-100/80 border-b border-slate-300/60 dark:border-slate-800 fixed w-full z-50 py-2.5">
+        <div class="bg-slate-100 dark:bg-slate-900 shadow-sm dark:shadow-none shadow-blue-100/80 border-b border-slate-300/60 dark:border-slate-800 fixed w-full z-50 py-2.5">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" onclick="show('.nav-column')"
                 class="md:hidden absolute top-2.5 left-1 dark:text-slate-400 w-8 h-8 dark:bg-slate-800 bg-slate-200 px-1 rounded-md mobile-nav-launcher">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"></path>
@@ -15,7 +16,7 @@
             <div class="max-w-8xl mx-auto flex px-4 md:p-0">
                 <div class="basis-1/3">
                     <a href="<?php echo docs_home() ?>">
-                        <img src="/assets/images/logo.svg" alt="QuickDox Logo" class="h-7 md:pb-1 ml-8 md:h-10 md:ml-0" />
+                        <img src="/assets/images/logo.svg" alt="QuickDox Logo" class="h-7 md:py-1 ml-8 md:h-10 md:ml-0" />
                     </a>
                 </div>
                 <div class="relative hidden sm:block md:basis-1/3">
@@ -47,9 +48,8 @@
                         </button>
                         <div class="absolute -mt-8 rounded-lg bg-primary-100 dark:bg-slate-800 dark:text-primary-100 py-2 text-sm hidden group-hover:block">
                             <?php if($total_versions > 1) {
-                                foreach(App::get('doc_versions') as $branch) {
-                            ?>
-                                <a href="/<?php echo get_url_prefix()."{$branch}" ?>" class="block py-2 pl-3 pr-8 text-left border-b border-primary-200 hover:bg-primary-400 hover:text-primary-100"><?php echo $version; ?></a>
+                                foreach(App::get('doc_versions') as $branch) { ?>
+                                <a href="/<?php echo append_slash(get_url_prefix()."{$branch}").App::get('default_doc_page') ?>" class="block py-2 pl-3 pr-8 text-left border-b border-primary-200 hover:bg-primary-400 hover:text-primary-100"><?php echo $branch; ?></a>
                             <?php }
                             } ?>
                         </div>
@@ -97,6 +97,18 @@
                 <div class="mx-auto pt-20 xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
                     <div class="doc-content scroll-smooth prose p-4 pt-3 md:p-9 !z-30 <?php if(App::get('display_line_numbers')) echo ' line-numbers' ?>">
                         <?php echo $content ?? ''; ?>
+
+                        <?php if (App::get('allow_edit_on_git') && !empty(App::get('md_repo_url'))) { ?>
+                            <div class="text-center my-16 text-xs">
+                                <a class="inline-flex items-center bg-slate-100 hover:bg-slate-200 py-1 px-3 rounded-md" target="_blank"
+                                   href="<?php echo str_replace('.git', '', App::get('md_repo_url')).'/edit/'.variable('current_version', 'session').'/'.end($uri_parts).'.md' ?>">
+                                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5 mr-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path>
+                                    </svg>
+                                    Edit on GitHub
+                                </a>
+                            </div>
+                        <?php } ?>
                     </div>
                     <div class="side-nav-container fixed z-20 top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 overflow-y-auto hidden xl:block">
                         <p class="py-4 pt-6 text-slate-400 text-xs uppercase tracking-wider">In This Document</p>
@@ -113,6 +125,7 @@
     setPageTitle();
     collapseAll(true);
     highlightThisPageInNav('<?php echo strip_slash(get_url_prefix(),-1) ?>');
+    prependNavItemsWithPath('<?php echo str_replace(\QuickieDox\Doc::stripMdExtension(App::get('default_doc_page')), '', docs_home()) ?>');
     activateNavActions();
     openUpNav();
     externalLinksOpenInNewWindow();

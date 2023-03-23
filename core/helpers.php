@@ -125,7 +125,7 @@ function to_json ($data)
 function docs_home(): string
 {
     return '/' . get_url_prefix().
-        append_slash(App::get('default_doc_version')).
+        append_slash(variable('current_version','session')??App::get('default_doc_version')).
         Doc::stripMdExtension(App::get('default_doc_page'));
 }
 

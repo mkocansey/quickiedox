@@ -122,4 +122,9 @@ return [
      */
     'md_repo_url' => getenv('MD_REPO_URL'),
 
+    /**
+     * Display edit on GitHub link at the end of each document
+     */
+    'allow_edit_on_git' => getenv('ALLOW_EDIT_ON_GIT'),
+
 ];
