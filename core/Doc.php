@@ -51,20 +51,23 @@ class Doc
      */
     public function load(string $page = null, bool $isPage = true): \League\CommonMark\Output\RenderedContentInterface
     {
+        if ($this->isReadable($page)) {
+            // if $isPage=false, we want to convert a markdown string not a whole file
+            $page = ($isPage) ? (($page !== null) ? $this->appendMdExtension($page) : $this->page) : $page;
 
-        // if $isPage=false, we want to convert a markdown string not a whole file
-        $page = ($isPage) ? (($page !== null) ? $this->appendMdExtension($page) : $this->page) : $page;
-
-        $config = [
-            'html_input' => (! App::get('allow_html_in_markdown')) ? 'strip' : 'allow',
-            'allow_unsafe_links' => false
-        ];
-        $environment = new Environment($config);
-        $environment->addExtension(new CommonMarkCoreExtension());
-        $environment->addExtension(new GithubFlavoredMarkdownExtension());
-        $environment->addExtension(new AttributesExtension());
-        $converter = new MarkdownConverter($environment);
-        return $converter->convertToHtml(($isPage)?file_get_contents($page):$page);
+            $config = [
+                'html_input' => (!App::get('allow_html_in_markdown')) ? 'strip' : 'allow',
+                'allow_unsafe_links' => false
+            ];
+            $environment = new Environment($config);
+            $environment->addExtension(new CommonMarkCoreExtension());
+            $environment->addExtension(new GithubFlavoredMarkdownExtension());
+            $environment->addExtension(new AttributesExtension());
+            $converter = new MarkdownConverter($environment);
+            return $converter->convertToHtml(($isPage) ? file_get_contents($page) : $page);
+        } else {
+            return view('auth-required');
+        }
     }
 
     /**
@@ -111,6 +114,18 @@ class Doc
     {
         $nav_file = $this->pathToMdFiles() . App::get('nav_page');
         return ($this->exists($nav_file)) ? $this->load($nav_file) : App::get('message_if_no_navigation');
+    }
+
+    /**
+     * Check if page requires sign in before reading
+     * @param string $page
+     * @return bool
+     * @throws \Exception
+     */
+    public function isReadable(string $page): bool
+    {
+        if (! App::get('require_signin') || basename($page) === App::get('nav_page')) return true;
+        return (in_array(basename($page), App::get('whitelisted_docs')) || (new Auth())->canRead());
     }
 
 }

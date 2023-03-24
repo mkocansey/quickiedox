@@ -20,7 +20,8 @@
     "league/commonmark": "^2.3",
     "ext-curl": "*",
     "ext-json": "*",
-    "ext-mbstring": "*"
+    "ext-mbstring": "*",
+    "guzzlehttp/guzzle": "^7.5"
   },
   "autoload" : {
     "psr-4" : {

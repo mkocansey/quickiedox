@@ -45,7 +45,9 @@ return [
      * variable defined in core/Authentication.php. you can however, whitelist pages you
      * want to make accessible all the time
      *  */
-    'whitelisted_docs'  => [],
+    'whitelisted_docs'  => [
+        // 'overview.md'
+    ],
 
     /**
      * directory where docs will be loaded from. the default is a docs directory at the root 
@@ -93,7 +95,7 @@ return [
      * message to display of no navigation file is found.
      * navigation page here is whatever has been defined for nav_page above
      */
-    'message_if_no_navigation' => 'no navigation.md file found',
+    'message_if_no_navigation' => 'no navigation file found',
 
     /**
      * by default line numbers in code snippets are turned off.

@@ -232,23 +232,3 @@ class DocController
         ]));
     }
 }
-
-/**
- * Adding PHP 7 compatibility
- */
-if (!function_exists('str_ends_with')) {
-    function str_ends_with($str, $end): bool
-    {
-        return (@substr_compare($str, $end, -strlen($end))==0);
-    }
-}
-
-/**
- * Adding PHP 7 compatibility
- */
-if (!function_exists('str_contains')) {
-    function str_contains($haystack, $needle): bool
-    {
-        return $needle !== '' && mb_strpos($haystack, $needle) !== false;
-    }
-}

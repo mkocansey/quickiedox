@@ -17,4 +17,7 @@
     Router::get($url_prefix .'{page}',  'DocController@read');
     Router::get($url_prefix .'{version}/{page}', 'DocController@read');
     Router::get($url_prefix .'404', 'DocController@notFound');
-    Router::get($url_prefix .'restricted', 'DocController@restricted');
+
+    // possible auth urls if you require users to sign in before reading docs
+    // Router::get('token/validate', 'AuthController@validate');
+    // Router::get('signout', 'AuthController@signOut');
