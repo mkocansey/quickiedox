@@ -1,5 +1,6 @@
 <?php
     use QuickieDox\App;
+    use QuickieDox\Doc;
 
     require_once 'header.php';
 
@@ -49,7 +50,8 @@
                         <div class="absolute -mt-8 rounded-lg bg-primary-100 dark:bg-slate-800 dark:text-primary-100 py-2 text-sm hidden group-hover:block">
                             <?php if($total_versions > 1) {
                                 foreach(App::get('doc_versions') as $branch) { ?>
-                                <a href="/<?php echo append_slash(get_url_prefix()."{$branch}").App::get('default_doc_page') ?>" class="block py-2 pl-3 pr-8 text-left border-b border-primary-200 hover:bg-primary-400 hover:text-primary-100"><?php echo $branch; ?></a>
+                                <a href="/<?php echo append_slash(get_url_prefix()."{$branch}").Doc::stripMdExtension(App::get('default_doc_page')) ?>"
+                                   class="block py-2 pl-3 pr-8 text-left border-b border-primary-200 hover:bg-primary-400 hover:text-primary-100"><?php echo $branch; ?></a>
                             <?php }
                             } ?>
                         </div>
