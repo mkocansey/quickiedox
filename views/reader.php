@@ -9,22 +9,23 @@
 ?>
     <body>
         <!--- TOP BAR --->
-        <div class="bg-slate-100 dark:bg-slate-900 shadow-sm dark:shadow-none shadow-blue-100/80 border-b border-slate-300/60 dark:border-slate-800 fixed w-full z-50 py-2.5">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" onclick="show('.nav-column')"
-                class="md:hidden absolute top-2.5 left-1 dark:text-slate-400 w-8 h-8 dark:bg-slate-800 bg-slate-200 px-1 rounded-md mobile-nav-launcher">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"></path>
-            </svg>
-            <div class="max-w-8xl mx-auto flex px-4 md:p-0">
-                <div class="basis-1/3">
+        <div class="bg-slate-50 dark:bg-slate-900 dark:shadow-none border-b border-slate-300/60 dark:border-slate-800 fixed w-full z-50 py-2.5">
+            <div class="max-w-8xl mx-auto flex items-center pr-3 pl-0 md:p-0">
+                <div class="basis-1/3 inline-flex">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" onclick="show('.nav-column')"
+                         class="md:hidden dark:text-slate-400 w-9 h-9 dark:bg-slate-800 bg-slate-200/50 text-slate-500 mobile-nav-launcher px-1 rounded-lg absolute top-[8px] ml-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                        </svg>
                     <a href="<?php echo docs_home() ?>">
-                        <img src="/assets/images/logo.svg" alt="QuickDox Logo" class="h-7 md:py-1 ml-8 md:h-10 md:ml-0" />
+                        <img src="/assets/images/logo.svg" alt="QuickDox Logo" class="h-8 md:ml-0 hidden md:block dark:grayscale dark:brightness-200" />
+                        <img src="/assets/images/favicon.png" alt="QuickDox Logo" class="h-8 ml-[70px] md:hidden" />
                     </a>
                 </div>
                 <div class="relative hidden sm:block md:basis-1/3">
                     <input type="text" placeholder="Quick Search" onkeyup="search(this.value)" 
-                        class="absolute w-full border border-primary-200/70 dark:border-slate-900 rounded-full py-2 px-9 focus:outline-none focus:shadow-inner focus:ring-2 focus:ring-primary-500 dark:ring-slate-800 text-primary-600 dark:text-primary-300 mt-[-1px] dark:bg-white/5 search placeholder:dark:opacity-50" />
+                        class="w-full border border-primary-300 dark:border-slate-900 rounded-full py-2 px-9 focus:outline-none focus:shadow-inner focus:ring-2 focus:ring-primary-500 text-primary-600 dark:text-primary-300 dark:bg-white/5 search placeholder:dark:opacity-50" />
                     <span class="absolute mt-2.5 text-sm opacity-20 dark:text-primary-200 right-4 cursor-default cmd-ctrl-k search-shortcut"></span>
-                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5 absolute ml-3 mt-2.5 opacity-20 dark:text-primary-200">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5 absolute ml-3 top-3 opacity-20 dark:text-primary-200">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
                     </svg>
                 </div>
@@ -50,8 +51,7 @@
                         <div class="absolute -mt-8 rounded-lg bg-primary-100 dark:bg-slate-800 dark:text-primary-100 py-2 text-sm hidden group-hover:block">
                             <?php if($total_versions > 1) {
                                 foreach(App::get('doc_versions') as $branch) { ?>
-                                <a href="/<?php echo append_slash(get_url_prefix()."{$branch}").Doc::stripMdExtension(App::get('default_doc_page')) ?>"
-                                   class="block py-2 pl-3 pr-8 text-left border-b border-primary-200 hover:bg-primary-400 hover:text-primary-100"><?php echo $branch; ?></a>
+                                <a href="/<?php echo append_slash(get_url_prefix()."{$branch}").Doc::stripMdExtension(App::get('default_doc_page')) ?>" class="block py-2 pl-3 pr-8 text-left border-b border-primary-200 hover:bg-primary-400 hover:text-primary-100"><?php echo $branch; ?></a>
                             <?php }
                             } ?>
                         </div>
@@ -85,7 +85,7 @@
         <!--- end search box --->
 
         <div class="w-full lg:max-w-8xl mx-auto md:flex">
-            <div class="nav-column hidden bg-white md:!block md:z-40 z-50 inset-0 top-0 md:top-[82px] md:w-[17.5rem] w-10/12 pb-10 md:pt-6 overflow-y-auto border-r border-slate-100 dark:border-slate-800/70 fixed md:left-[max(0px,calc(50%-45rem))] left-0 md:right-auto md:px-4 dark:bg-slate-800 md:bg-transparent md:dark:bg-transparent shadow-2xl md:shadow-none dark:shadow-slate-900">
+            <div class="nav-column hidden bg-white md:!block md:z-40 z-50 inset-0 top-0 md:top-[75px] md:w-[17.5rem] w-10/12 pb-10 md:pt-6 overflow-y-auto border-r border-slate-100 dark:border-slate-800/70 fixed md:left-[max(0px,calc(50%-45rem))] left-0 md:right-auto md:px-4 dark:bg-slate-800 md:bg-transparent md:dark:bg-transparent shadow-2xl md:shadow-none dark:shadow-slate-900">
                 <div class="p-2 cursor-pointer text-right md:hidden mr-3" onclick="hide('.nav-column')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 dark:text-slate-500 inline-block">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
@@ -95,24 +95,25 @@
                     <?php echo $navigation ?? ''; ?>
                 </nav>
             </div>
-            <div class="lg:pl-[17.5rem] z-30 pl-0">
-                <div class="mx-auto pt-20 xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
-                    <div class="doc-content scroll-smooth prose p-4 pt-3 md:p-9 !z-30 <?php if(App::get('display_line_numbers')) echo ' line-numbers' ?>">
-                        <?php echo $content ?? ''; ?>
 
-                        <?php if (App::get('allow_edit_on_git') && !empty(App::get('md_repo_url'))) { ?>
-                            <div class="text-center my-16 text-xs">
-                                <a class="inline-flex items-center bg-slate-100 hover:bg-slate-200 py-1 px-3 rounded-md" target="_blank"
-                                   href="<?php echo str_replace('.git', '', App::get('md_repo_url')).'/edit/'.variable('current_version', 'session').'/'.end($uri_parts).'.md' ?>">
-                                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5 mr-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path>
-                                    </svg>
-                                    Edit on GitHub
-                                </a>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="side-nav-container fixed z-20 top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 overflow-y-auto hidden xl:block">
+            <div class="md:ml-[17.5rem] z-30 pl-0 pt-[61px] w-full md:flex">
+                <div class="doc-content scroll-smooth prose px-5 py-3 md:px-12 md:pt-12 !z-30 md:w-[calc(100%_-_17.5rem)] <?php if(App::get('display_line_numbers')) echo ' line-numbers' ?> min-h-screen">
+                    <?php echo $content ?? ''; ?>
+
+                    <?php if (App::get('allow_edit_on_git') && !empty(App::get('md_repo_url'))) { ?>
+                        <div class="text-center my-16 text-xs">
+                            <a class="inline-flex items-center bg-slate-100 hover:bg-slate-200 py-1 px-3 rounded-md" target="_blank"
+                               href="<?php echo str_replace('.git', '', App::get('md_repo_url')).'/edit/'.variable('current_version', 'session').'/'.end($uri_parts).'.md' ?>">
+                                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path>
+                                </svg>
+                                Edit on GitHub
+                            </a>
+                        </div>
+                    <?php } ?>
+                </div>
+                <div class="hidden sm:block pt-10 side-nav-container z-40">
+                    <div class="fixed">
                         <p class="py-4 pt-6 text-slate-400 text-xs uppercase tracking-wider">In This Document</p>
                         <div class="side-nav"></div>
                     </div>
