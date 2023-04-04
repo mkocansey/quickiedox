@@ -112,7 +112,7 @@
                         </div>
                     <?php } ?>
                 </div>
-                <div class="hidden sm:block pt-10 side-nav-container z-40">
+                <div class="hidden sm:block pt-10 side-nav-container z-40 w-[17.5rem]">
                     <div class="fixed">
                         <p class="py-4 pt-6 text-slate-400 text-xs uppercase tracking-wider">In This Document</p>
                         <div class="side-nav"></div>
