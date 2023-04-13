@@ -94,7 +94,8 @@ function append_slash(string $string): string
  */
 function get_url_prefix(): string
 {
-    return append_slash(strip_slash(App::get('docs_url_prefix')));
+    $url_prefix = strip_slash(App::get('docs_url_prefix'));
+    return ($url_prefix !== '') ? append_slash($url_prefix) : $url_prefix;
 }
 
 /**

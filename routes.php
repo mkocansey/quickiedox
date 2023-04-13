@@ -20,4 +20,4 @@
 
     // possible auth urls if you require users to sign in before reading docs
     // Router::get('token/validate', 'AuthController@validate');
-    // Router::get('signout', 'AuthController@signOut');
+    // Router::get('signout', 'AuthController@signout');

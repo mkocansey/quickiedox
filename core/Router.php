@@ -49,7 +49,6 @@ class Router
     public function direct(string $url, string $requestType)
     {
         $this->hotSwap($url, $requestType);
-
         if (array_key_exists($url, self::$routes[$requestType]) ) {
             return $this->callAction(
                 ...explode('@', self::$routes[$requestType][strip_slash($url)])
@@ -87,21 +86,23 @@ class Router
         $dynamic_route_params = [];
         Session::forget(['dynamic_route_params']);
 
-        foreach ($array_keys as $key) {
-            if (substr_count($key, '/') === substr_count($url, '/') && strstr($key, '{')  ) {
-                $key_parts = explode('/', $key);
-                for ($x=0; $x < count($key_parts); $x++) {
-                    if (strstr($key_parts[$x], '{') ) {
-                        $param_key = preg_replace('/[{,}]/', '', $key_parts[$x]);
-                        $dynamic_route_params[$param_key] =  $url_parts[$x];
-                        $key_parts[$x] = $url_parts[$x];
+        if (!in_array($url, $array_keys)) {
+            foreach ($array_keys as $key) {
+                if (substr_count($key, '/') === substr_count($url, '/') && strstr($key, '{')  ) {
+                    $key_parts = explode('/', $key);
+                    for ($x=0; $x < count($key_parts); $x++) {
+                        if (strstr($key_parts[$x], '{') ) {
+                            $param_key = preg_replace('/[{,}]/', '', $key_parts[$x]);
+                            $dynamic_route_params[$param_key] =  $url_parts[$x];
+                            $key_parts[$x] = $url_parts[$x];
+                        }
                     }
-                }
-                if (implode('/',$key_parts) === $url){
-                    self::$routes[$requestType][implode('/',$key_parts)] = self::$routes[$requestType][$key];
-                    unset(self::$routes[$requestType][$key]);
-                    if (count($dynamic_route_params) > 0 ) Session::put([ 'dynamic_route_params' => $dynamic_route_params ]);
-                    break;
+                    if (implode('/',$key_parts) === $url){
+                        self::$routes[$requestType][implode('/',$key_parts)] = self::$routes[$requestType][$key];
+                        unset(self::$routes[$requestType][$key]);
+                        if (count($dynamic_route_params) > 0 ) Session::put([ 'dynamic_route_params' => $dynamic_route_params ]);
+                        break;
+                    }
                 }
             }
         }
