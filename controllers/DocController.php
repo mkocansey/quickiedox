@@ -18,7 +18,7 @@ class DocController
     public function __construct()
     {
         $this->page = variable('dynamic_route_params')['page'] ?? App::get('default_doc_page');
-        $this->version = (variable('dynamic_route_params')['version'] && in_array(variable('dynamic_route_params')['version'], App::get('doc_versions'))) ?
+        $this->version = (isset(variable('dynamic_route_params')['version']) && in_array(variable('dynamic_route_params')['version'], App::get('doc_versions'))) ?
             variable('dynamic_route_params')['version'] :
             App::get('default_doc_version');
 
@@ -205,7 +205,7 @@ class DocController
             foreach ($files as $file) {
                 // look through all .md files except the navigation file
                 if (str_ends_with($file, '.md') && !str_contains($file, App::get('nav_page'))) {
-                    $pattern = "/^.*$keyword.*\$/m";
+                    $pattern = "/^.*$keyword.*\$/im";
                     $fh = fopen(append_slash($version_directory).$file, 'r') or die($php_errormsg);
                     while (!feof($fh)) {
                         $line = fgets($fh, 4096);

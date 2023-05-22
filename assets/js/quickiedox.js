@@ -32,7 +32,7 @@ void (highlightThisPageInNav = (default_url) => {
     let this_page = (((location.href).split('/')).slice(-1)[0].split('#'))[0];
     if(this_page !== default_url) {
         document.querySelectorAll('nav li a').forEach((el) => {
-            if (el.getAttribute('href').includes(this_page)) {
+            if (el.getAttribute('href') === this_page) {
                 el.classList.add('selected');
             }
         });
