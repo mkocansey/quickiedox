@@ -73,7 +73,7 @@ void (activateNavActions = () => {
  * @returns VoidFunction
  */
 void (collapseAll = (cascade_collapse) => {
-    let selector = (cascade_collapse) ? 'nav li ul' : 'nav li ul:not(:has(ul))';
+    let selector = (cascade_collapse) ? 'nav li ul' : 'nav li ul:not(:scope ul)';
     document.querySelectorAll(selector).forEach((el) => {
     if (el.classList.contains('open') && el.classList.contains('hidden')) {
         el.classList.remove('open');
