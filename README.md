@@ -7,9 +7,9 @@ QuickieDox is not software as a service, thus, doesn't host any documentation. Y
 &nbsp;
 ## Who Can Use QuickieDox
 
-To use QuickieDox you must already know how to write markdown syntax and also know some basic PHP. [This guide](https://www.markdownguide.org/getting-started/) can bring you up to speed on writing markdown.
+- To use QuickieDox you must already know how to write markdown syntax and also know some basic PHP. [This guide](https://www.markdownguide.org/getting-started/) can bring you up to speed on writing markdown.
 
-Anyone with documentation needs regardless of the size can use QuickieDox
+- Anyone with documentation needs regardless of the size can use QuickieDox
 
 &nbsp;
 ## Installation
