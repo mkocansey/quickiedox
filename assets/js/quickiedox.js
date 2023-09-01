@@ -321,9 +321,16 @@ void (hide = (element) => { domElement(element).classList.add('hidden'); })
  * @returns VoidFunction
  */
   void (setTheme = (onload = false) => {
-    let theme;
-    theme = (onload) ? window.localStorage.getItem('theme') || 'light' : ((domElement('html').classList.contains('dark')) ? 'light' : 'dark');    
-    (theme === 'light') ? domElement('html').classList.remove('dark') : domElement('html').classList.add('dark');
+    // let theme;
+    let system_theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    let theme = (onload) ?
+        window.localStorage.getItem('theme') || system_theme :
+        ((domElement('html').classList.contains('dark')) ? 'light' : 'dark');
+
+    (theme === 'light') ?
+        domElement('html').classList.remove('dark') :
+        domElement('html').classList.add('dark');
+
     window.localStorage.setItem('theme', theme);
   })
 
