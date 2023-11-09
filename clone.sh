@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# updtae this to your own documentation repo url
-GIT_REPO_URL="https://github.com/mkocansey/quickiedox-mds.git"
+# update this to your own documentation repo url
+# GitHub blocked passwords in terminals so you will not be able to use the https://url
+GIT_REPO_URL="git@github.com:mkocansey/quickiedox-mds.git"
 
 # update this to the directory you prefer to clone your docs into
 DOCS_DIRECTORY="markdown"
