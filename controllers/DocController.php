@@ -18,9 +18,13 @@ class DocController
     public function __construct()
     {
         $this->page = variable('dynamic_route_params')['page'] ?? App::get('default_doc_page');
-        $this->version = (isset(variable('dynamic_route_params')['version']) && in_array(variable('dynamic_route_params')['version'], App::get('doc_versions'))) ?
-            variable('dynamic_route_params')['version'] :
-            App::get('default_doc_version');
+        $this->version = '';
+        if(!empty(variable('dynamic_route_params')['version'])) {
+            $this->version = (variable('dynamic_route_params')['version'] &&
+                in_array(variable('dynamic_route_params')['version'], App::get('doc_versions'))) ?
+                variable('dynamic_route_params')['version'] :
+                App::get('default_doc_version');
+        }
 
         $this->error_page = 'views/404.md';
         $this->doc = new Doc($this->version, $this->page);
