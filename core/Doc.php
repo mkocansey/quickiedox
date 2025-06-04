@@ -14,8 +14,9 @@ class Doc
     private string $page;
 
     /**
-     * @param string $version
-     * @param string $page
+     * @param  string  $version
+     * @param  string  $page
+     * @throws \Exception
      */
     public function __construct(string $version, string $page)
     {
@@ -28,7 +29,7 @@ class Doc
      * @param string|null $page
      * @return bool
      */
-    public function exists(string $page = null): bool
+    public function exists(?string $page = null): bool
     {
         return file_exists(($page) ?? $this->page);
     }
@@ -49,7 +50,7 @@ class Doc
      * @return RenderedContentInterface
      * @throws \Exception
      */
-    public function load(string $page = null, bool $isPage = true): \League\CommonMark\Output\RenderedContentInterface
+    public function load(?string $page = null, bool $isPage = true): \League\CommonMark\Output\RenderedContentInterface
     {
         // if $isPage=false, we want to convert a markdown string not a whole file
         $page = ($isPage) ? (($page !== null) ? $this->appendMdExtension($page) : $this->page) : $page;

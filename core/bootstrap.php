@@ -1,29 +1,70 @@
 <?php
-    use QuickieDox\App;
 
-    App::bind('config', require 'config.php');
+declare(strict_types=1);
 
-    $config_array = App::get('config');
+use QuickieDox\App;
+
+/**
+ * Bootstrap application configuration
+ * 
+ * This file is responsible for loading and binding configuration values
+ * to the application container.
+ */
+
+final class Bootstrap
+{
+    /**
+     * Initialize the application configuration
+     */
+    public static function init(): void
+    {
+        $config = require 'config.php';
+        if (!is_array($config)) {
+            throw new RuntimeException('Configuration must be an array');
+        }
+
+        self::bindConfig($config);
+        self::setDefaultDocVersion();
+    }
 
     /**
-     * bind all values defined in the config.php to a key/value variable name
-     * that can be retrieved using App::get('variable_name')
+     * Bind configuration values to the application container
      */
-    if (is_array($config_array) && ! empty($config_array)) {
-        foreach ($config_array as $key => $value) {
-            // just ensure true/false values from .env file are treated as boolean
-            $value = (!is_array($value) && (str_contains($value, 'true') ||
-                str_contains($value, 'false'))) ?
-                filter_var($value, FILTER_VALIDATE_BOOLEAN) :
-                $value;
-            App::bind($key, $value);
+    private static function bindConfig(array $config): void
+    {
+        App::bind('config', $config);
+
+        foreach ($config as $key => $value) {
+            App::bind($key, self::normalizeValue($value));
         }
     }
 
     /**
-     * all values in config.php can be accessed as App::get('variable_name').
-     * the environment variable for example can be accessed as App::get('environment')
-     * -------------------------------------------------------------------------
-     * you can bind additional variables you want to access globally here.
+     * Set the default documentation version
      */
-    App::bind('default_doc_version', (! empty(App::get('doc_versions')) ) ? App::get('doc_versions')[0] : '');
+    private static function setDefaultDocVersion(): void
+    {
+        $versions = App::get('doc_versions');
+        $defaultVersion = is_array($versions) && !empty($versions) ? $versions[0] : '';
+        App::bind('default_doc_version', $defaultVersion);
+    }
+
+    /**
+     * Normalize configuration values
+     */
+    private static function normalizeValue(mixed $value): mixed
+    {
+        if (!is_string($value)) {
+            return $value;
+        }
+
+        return match (strtolower($value)) {
+            'true' => true,
+            'false' => false,
+            default => $value
+        };
+    }
+}
+
+// Initialize the application
+Bootstrap::init();

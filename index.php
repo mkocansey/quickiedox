@@ -1,25 +1,32 @@
 <?php
-    @session_start();
 
-    require 'vendor/autoload.php';
+declare(strict_types=1);
 
-    use QuickieDox\Envy;
-    use QuickieDox\Router;
-    use QuickieDox\Request;
+session_start();
 
-    /**
-     * load the content of the .env file
-     */
-    if(! file_exists(__DIR__ . '/.env')) die('Please rename .env-example to .env');
+require 'vendor/autoload.php';
+
+use QuickieDox\Envy;
+use QuickieDox\Router;
+use QuickieDox\Request;
+use Exception;
+
+try {
+    // Load environment variables
+    if (!file_exists(__DIR__ . '/.env')) {
+        throw new Exception('Environment file not found. Please rename .env-example to .env');
+    }
     Envy::load(__DIR__ . '/.env');
 
-    /**
-     * load all variables defined in config.php and make them accessible globally
-     */
+    // Bootstrap application
     require 'core/bootstrap.php';
 
-    /**
-     * load routes from the routes.php file
-     * mapping of routes to their respective controllers is handed in core/Router.php
-     */
-    Router::load('routes.php')->direct(Request::uri(), Request::method());
+    // Handle routing
+    Router::load('routes.php')
+        ->direct(Request::uri(), Request::method());
+} catch (Exception $e) {
+    // Basic error handling - you might want to replace this with proper error handling
+    http_response_code(500);
+    echo $e->getMessage();
+    exit(1);
+}
